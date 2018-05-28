@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Ballte.unity
+    guid: 22995fc8fb64243c9926d232d9b28928
+  - enabled: 1
+    path: Assets/Scenes/Cover.unity
+    guid: cbdec3af959164586981e3a8c51c6bbd
