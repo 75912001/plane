@@ -53,12 +53,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
      <Compile Include="Assets\Scripts\Cover\ButtonBattle.cs" />
-     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
      <Compile Include="Assets\Scripts\Cover\Cover.cs" />
-     <Compile Include="Assets\Scripts\Cover\UIEventListener.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\GroundScrolling.cs" />
      <Compile Include="Assets\Scripts\RendererExtensions.cs" />
+     <Compile Include="Assets\Scripts\UIEventListener.cs" />
+     <Compile Include="Assets\Scripts\Xml\XmlBattleLevel.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>

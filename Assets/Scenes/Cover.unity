@@ -264,7 +264,6 @@ GameObject:
   - component: {fileID: 514637086}
   - component: {fileID: 514637085}
   - component: {fileID: 514637084}
-  - component: {fileID: 514637087}
   m_Layer: 5
   m_Name: ButtonBattle
   m_TagString: Untagged
@@ -376,17 +375,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 514637082}
---- !u!114 &514637087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 514637082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 399f3df9442dc4bc4910ab2ecb7ac4d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &753125643
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +515,7 @@ GameObject:
   - component: {fileID: 1345046809}
   - component: {fileID: 1345046810}
   m_Layer: 0
-  m_Name: xx
+  m_Name: Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

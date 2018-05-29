@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonBattleEvent : MonoBehaviour {
 
@@ -11,6 +12,9 @@ public class ButtonBattleEvent : MonoBehaviour {
 		UIEventListener btnListener = btn.gameObject.AddComponent<UIEventListener> ();
 		btnListener.OnClick += delegate(GameObject gb) {
 			Debug.Log(gb.name + " OnClick");
+
+			Global.Instance.battleMgr.level = 1;
+			SceneManager.LoadScene("Scenes/Battle");//切换到场景 
 		};
 
 		btnListener.OnMouseEnter += delegate(GameObject gb) {

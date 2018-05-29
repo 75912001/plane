@@ -14,4 +14,5 @@ public class Global {
 			return instance;
 		}
 	}
+
 }
