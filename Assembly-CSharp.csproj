@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
-     <Compile Include="Assets\Scripts\Cover\ButtonBattle.cs" />
+     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
      <Compile Include="Assets\Scripts\Cover\Cover.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\GroundScrolling.cs" />

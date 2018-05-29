@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/BattleMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GroundScrolling.cs">
     <Files>
-      <File FileName="Assets/Scripts/Cover/Cover.cs" Line="16" Column="48" />
-      <File FileName="Assets/Scripts/Global.cs" Line="17" Column="1" />
+      <File FileName="Assets/Scripts/Cover/Cover.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Global.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GroundScrolling.cs" Line="9" Column="40" />
-      <File FileName="Assets/Scripts/Xml/XmlBattleLevel.cs" Line="38" Column="23" />
-      <File FileName="../card1/Assets/Scripts/ScrollingScript.cs" Line="55" Column="25" NotebookId="1" />
-      <File FileName="Assets/Scripts/Cover/ButtonBattle.cs" Line="16" Column="35" NotebookId="1" />
+      <File FileName="Assets/Scripts/Xml/XmlBattleLevel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Cover/ButtonBattleEvent.cs" Line="1" Column="1" />
+      <File FileName="../card1/Assets/Scripts/ScrollingScript.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Assets/Scripts/Battle/BattleMgr.cs" Line="16" Column="18" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
