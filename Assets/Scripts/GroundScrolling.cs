@@ -77,7 +77,7 @@ public class GroundScrolling : MonoBehaviour {
 			}
 		}
 		this.rendererList.Sort((x,y) => x.position.y.CompareTo(y.position.y));//position.y升序
-                                                                              //this.childList.Sort((x, y) => -x.position.y.CompareTo(y.position.y));//position.y降序
+        //this.childList.Sort((x, y) => -x.position.y.CompareTo(y.position.y));//position.y降序
 
 
         #region 加载飞机
@@ -120,15 +120,18 @@ public class GroundScrolling : MonoBehaviour {
 		if (!this.run) {
 			return;
 		}
-        Vector3 newPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
-        newPosition.x = 0;
-        newPosition.y = -Camera.main.orthographicSize/2;
-        Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position, Time.time*0.3f);
-        if(Vector3.Distance(newPosition, Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position) < 1.0f)
-        {
+		#region 飞机入场
+        Vector3 fromPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
+        fromPosition.x = 0;
+        fromPosition.y = -Camera.main.orthographicSize;
+		Vector3 toPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
+        toPosition.x = 0;
+        toPosition.y = -Camera.main.orthographicSize/1.5f;
+        Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
+        if(Vector3.Distance(Global.Instance.battleMgr.userPlaneGameObject.transform.position, toPosition) < 0.1f){
             Debug.LogFormat("gogogo:{0}", Time.time);
         }
-       // Debug.LogFormat("Time.time:{0}", Time.time);
+		#endregion
 
         Vector3 movement = new Vector3 (this.speed.x * this.direction.x,
 			this.speed.y * this.direction.y, 0);
