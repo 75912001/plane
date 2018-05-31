@@ -48,13 +48,13 @@ public class GroundScrolling : MonoBehaviour {
 		#region 创建背景
 		float fixY = 0.0f;
 		foreach (var data in this.backGroundNameList) {
-			GameObject prefabs = (GameObject)Resources.Load(data);
-			if (null == prefabs) {
+			GameObject backGroundPrefabs = (GameObject)Resources.Load(data);
+			if (null == backGroundPrefabs) {
 				Debug.LogErrorFormat ("GroundScrolling未找到{0}",data);
 			}
 
 			#region 拼图
-			float y = prefabs.GetComponent<SpriteRenderer> ().bounds.size.y;
+			float y = backGroundPrefabs.GetComponent<SpriteRenderer> ().bounds.size.y;
 			Vector3 newPosition = transform.position;
 			newPosition.y -= Camera.main.orthographicSize;
 			newPosition.y += y/2;
@@ -62,7 +62,7 @@ public class GroundScrolling : MonoBehaviour {
 			fixY += y;
 			#endregion
 
-			GameObject prefab = Instantiate (prefabs, newPosition, transform.rotation);
+			GameObject prefab = Instantiate (backGroundPrefabs, newPosition, transform.rotation);
 			prefab.transform.SetParent(transform);
 		}
 		#endregion
@@ -77,15 +77,60 @@ public class GroundScrolling : MonoBehaviour {
 			}
 		}
 		this.rendererList.Sort((x,y) => x.position.y.CompareTo(y.position.y));//position.y升序
-		//this.childList.Sort((x, y) => -x.position.y.CompareTo(y.position.y));//position.y降序
-	}
-	
-	// Update is called once per frame
-	void Update () {
+                                                                              //this.childList.Sort((x, y) => -x.position.y.CompareTo(y.position.y));//position.y降序
+
+
+        #region 加载飞机
+        {
+            string strPlaneName = "Prefabs/Plane/p_09d_0";
+            GameObject planePrefabs = (GameObject)Resources.Load(strPlaneName);
+            if (null == planePrefabs)
+            {
+                Debug.LogErrorFormat("GroundScrolling未找到{0}", strPlaneName);
+            }
+
+            GameObject level = GameObject.Find("Level");
+            if (null == level)
+            {
+                Debug.LogErrorFormat("Level未找到");
+            }
+            Transform foreGround_10 = level.transform.Find("ForeGround_10");
+            if (null == foreGround_10)
+            {
+                Debug.LogErrorFormat("ForeGround_10未找到");
+            }
+
+            Vector3 newPosition = foreGround_10.position;
+            newPosition.x = 0;
+            newPosition.y = -Camera.main.orthographicSize;
+
+            Global.Instance.battleMgr.userPlaneGameObject = Instantiate(planePrefabs, newPosition, foreGround_10.rotation);
+            Global.Instance.battleMgr.userPlaneGameObject.transform.SetParent(foreGround_10);
+
+            //Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, foreGround_10.position, Time.time);
+            Debug.LogFormat("Time.time:{0}", Time.time);
+        }
+
+        #endregion
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (!this.run) {
 			return;
 		}
-		Vector3 movement = new Vector3 (this.speed.x * this.direction.x,
+        Vector3 newPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
+        newPosition.x = 0;
+        newPosition.y = -Camera.main.orthographicSize/2;
+        Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position, Time.time*0.3f);
+        if(Vector3.Distance(newPosition, Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position) < 1.0f)
+        {
+            Debug.LogFormat("gogogo:{0}", Time.time);
+        }
+       // Debug.LogFormat("Time.time:{0}", Time.time);
+
+        Vector3 movement = new Vector3 (this.speed.x * this.direction.x,
 			this.speed.y * this.direction.y, 0);
 		movement *= Time.deltaTime;
 		transform.Translate (movement);

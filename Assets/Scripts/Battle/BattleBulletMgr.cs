@@ -4,6 +4,7 @@
 public class BattleBullet
 {
     //子弹类型
+    public int bulletId;
     //移动管理器
     //破坏力
     //碰撞对象
