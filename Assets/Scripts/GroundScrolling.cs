@@ -104,8 +104,8 @@ public class GroundScrolling : MonoBehaviour {
             newPosition.x = 0;
             newPosition.y = -Camera.main.orthographicSize;
 
-            Global.Instance.battleMgr.userPlaneGameObject = Instantiate(planePrefabs, newPosition, foreGround_10.rotation);
-            Global.Instance.battleMgr.userPlaneGameObject.transform.SetParent(foreGround_10);
+            Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser.gameObject = Instantiate(planePrefabs, newPosition, foreGround_10.rotation);
+            Global.Instance.battleMgr.GetUserPlaneTransform().SetParent(foreGround_10);
 
             //Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, foreGround_10.position, Time.time);
             Debug.LogFormat("Time.time:{0}", Time.time);
@@ -121,14 +121,14 @@ public class GroundScrolling : MonoBehaviour {
 			return;
 		}
 		#region 飞机入场
-        Vector3 fromPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
+        Vector3 fromPosition = Global.Instance.battleMgr.GetUserPlaneTransform().parent.position;
         fromPosition.x = 0;
         fromPosition.y = -Camera.main.orthographicSize;
-		Vector3 toPosition = Global.Instance.battleMgr.userPlaneGameObject.transform.parent.position;
+		Vector3 toPosition = Global.Instance.battleMgr.GetUserPlaneTransform().parent.position;
         toPosition.x = 0;
         toPosition.y = -Camera.main.orthographicSize/1.5f;
-        Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
-        if(Vector3.Distance(Global.Instance.battleMgr.userPlaneGameObject.transform.position, toPosition) < 0.1f){
+        Global.Instance.battleMgr.GetUserPlaneTransform().position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
+        if(Vector3.Distance(Global.Instance.battleMgr.GetUserPlaneTransform().position, toPosition) < 0.1f){
             Debug.LogFormat("gogogo:{0}", Time.time);
         }
 		#endregion

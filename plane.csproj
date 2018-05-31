@@ -237,6 +237,9 @@
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\Program Files\Unity\Editor\Data\PlaybackEngines\AppleTVSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>D:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Common">
@@ -248,6 +251,7 @@
     <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleMoveMgr.cs" />
     <Compile Include="Assets\Scripts\Battle\BattlePlaneMgr.cs" />
+    <Compile Include="Assets\Scripts\Battle\BattleUserMove.cs" />
     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
     <Compile Include="Assets\Scripts\Cover\Cover.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
