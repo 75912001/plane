@@ -25,5 +25,9 @@ public class BattleMgr{
     {
         return this.battlePlaneMgr.battlePlaneUser.gameObject.transform;
     }
+    public BattlePlane GetUserPlane()
+    {
+        return this.battlePlaneMgr.battlePlaneUser;
+    }
 
 }

@@ -10,6 +10,7 @@ public class BattlePlane
     public BattleBulletMgr battleBulletMgr;
 
     //移动管理器
+    public BattleMoveMgr battleMoveMgr;
     //是否僚机
     //归属飞机
     //僚机AI
@@ -21,8 +22,9 @@ public class BattlePlane
     public BattlePlane()
     {
         this.battleBulletMgr = new BattleBulletMgr();
+        this.battleMoveMgr = new BattleMoveMgr();
     }
-
+    
 }
 
 //战斗中的飞机管理器

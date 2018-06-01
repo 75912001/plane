@@ -109,6 +109,14 @@ public class GroundScrolling : MonoBehaviour {
 
             //Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, foreGround_10.position, Time.time);
             Debug.LogFormat("Time.time:{0}", Time.time);
+
+            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.x = 1;
+            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.y = 5;
+
+            Rigidbody2D rigidbody2D = Global.Instance.battleMgr.GetUserPlaneGameObject().AddComponent<Rigidbody2D>();
+            rigidbody2D.gravityScale = 0;
+            BattleUserMove battleUserMove = Global.Instance.battleMgr.GetUserPlaneGameObject().AddComponent<BattleUserMove>();
+
         }
 
         #endregion
@@ -127,10 +135,10 @@ public class GroundScrolling : MonoBehaviour {
 		Vector3 toPosition = Global.Instance.battleMgr.GetUserPlaneTransform().parent.position;
         toPosition.x = 0;
         toPosition.y = -Camera.main.orthographicSize/1.5f;
-        Global.Instance.battleMgr.GetUserPlaneTransform().position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
-        if(Vector3.Distance(Global.Instance.battleMgr.GetUserPlaneTransform().position, toPosition) < 0.1f){
-            Debug.LogFormat("gogogo:{0}", Time.time);
-        }
+ //       Global.Instance.battleMgr.GetUserPlaneTransform().position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
+ //       if(Vector3.Distance(Global.Instance.battleMgr.GetUserPlaneTransform().position, toPosition) < 0.1f){
+            //Debug.LogFormat("gogogo:{0}", Time.time);
+  //      }
 		#endregion
 
         Vector3 movement = new Vector3 (this.speed.x * this.direction.x,
