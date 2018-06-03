@@ -5,8 +5,6 @@ using UnityEngine;
 //背景滚动
 //支持从上向下循环滚动效果
 public class GroundScrolling : MonoBehaviour {
-	//背景名 列表
-	public List<string> backGroundNameList;
 	//速度
 	public Vector2 speed = new Vector2(0, 0);
 	//方向
@@ -27,27 +25,17 @@ public class GroundScrolling : MonoBehaviour {
 	}
 
 	void Awake(){
-		this.backGroundNameList = new List<string>();
 		this.rendererList = new List<Transform> ();
 	}
 	// Use this for initialization
 	void Start () {
-		#region 应该在初始化场景时设置好具体参数 todo
-		this.speed.y = 0.6f;
-
-		#region 加载背景
-		this.backGroundNameList.Add ("Prefabs/BackGround/forest_01");
-		this.backGroundNameList.Add ("Prefabs/BackGround/forest_02");
-		this.backGroundNameList.Add ("Prefabs/BackGround/forest_03");
-		this.backGroundNameList.Add ("Prefabs/BackGround/forest_02");
+		#region 应该在初始化场景时设置好具体参数
+		this.speed.y = 0.1f;
 		#endregion
 
-		#endregion
-
-
-		#region 创建背景
+        #region 创建背景
 		float fixY = 0.0f;
-		foreach (var data in this.backGroundNameList) {
+		foreach (var data in Global.Instance.battleMgr.battleBackGroundMgr.backGroundNameList) {
 			GameObject backGroundPrefabs = (GameObject)Resources.Load(data);
 			if (null == backGroundPrefabs) {
 				Debug.LogErrorFormat ("GroundScrolling未找到{0}",data);
@@ -78,49 +66,6 @@ public class GroundScrolling : MonoBehaviour {
 		}
 		this.rendererList.Sort((x,y) => x.position.y.CompareTo(y.position.y));//position.y升序
         //this.childList.Sort((x, y) => -x.position.y.CompareTo(y.position.y));//position.y降序
-
-
-        #region 加载飞机
-        {
-            string strPlaneName = "Prefabs/Plane/p_09d_0";
-            GameObject planePrefabs = (GameObject)Resources.Load(strPlaneName);
-            if (null == planePrefabs)
-            {
-                Debug.LogErrorFormat("GroundScrolling未找到{0}", strPlaneName);
-            }
-
-            GameObject level = GameObject.Find("Level");
-            if (null == level)
-            {
-                Debug.LogErrorFormat("Level未找到");
-            }
-            Transform foreGround_10 = level.transform.Find("ForeGround_10");
-            if (null == foreGround_10)
-            {
-                Debug.LogErrorFormat("ForeGround_10未找到");
-            }
-
-            Vector3 newPosition = foreGround_10.position;
-            newPosition.x = 0;
-            newPosition.y = -Camera.main.orthographicSize;
-
-            Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser.gameObject = Instantiate(planePrefabs, newPosition, foreGround_10.rotation);
-            Global.Instance.battleMgr.GetUserPlaneTransform().SetParent(foreGround_10);
-
-            //Global.Instance.battleMgr.userPlaneGameObject.transform.position = Vector3.Lerp(newPosition, foreGround_10.position, Time.time);
-            Debug.LogFormat("Time.time:{0}", Time.time);
-
-            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.x = 1;
-            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.y = 5;
-
-            Rigidbody2D rigidbody2D = Global.Instance.battleMgr.GetUserPlaneGameObject().AddComponent<Rigidbody2D>();
-            rigidbody2D.gravityScale = 0;
-            BattleUserMove battleUserMove = Global.Instance.battleMgr.GetUserPlaneGameObject().AddComponent<BattleUserMove>();
-
-        }
-
-        #endregion
-
     }
 
     // Update is called once per frame
@@ -128,18 +73,6 @@ public class GroundScrolling : MonoBehaviour {
 		if (!this.run) {
 			return;
 		}
-		#region 飞机入场
-        Vector3 fromPosition = Global.Instance.battleMgr.GetUserPlaneTransform().parent.position;
-        fromPosition.x = 0;
-        fromPosition.y = -Camera.main.orthographicSize;
-		Vector3 toPosition = Global.Instance.battleMgr.GetUserPlaneTransform().parent.position;
-        toPosition.x = 0;
-        toPosition.y = -Camera.main.orthographicSize/1.5f;
- //       Global.Instance.battleMgr.GetUserPlaneTransform().position = Vector3.Lerp(fromPosition, toPosition, Time.time*0.8f);
- //       if(Vector3.Distance(Global.Instance.battleMgr.GetUserPlaneTransform().position, toPosition) < 0.1f){
-            //Debug.LogFormat("gogogo:{0}", Time.time);
-  //      }
-		#endregion
 
         Vector3 movement = new Vector3 (this.speed.x * this.direction.x,
 			this.speed.y * this.direction.y, 0);
