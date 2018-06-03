@@ -51,12 +51,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Battle\BattleBackGroundMgr.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleBulletMgr.cs" />
+     <Compile Include="Assets\Scripts\Battle\BattleFire.cs" />
+     <Compile Include="Assets\Scripts\Battle\BattleForeGround.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleMoveMgr.cs" />
      <Compile Include="Assets\Scripts\Battle\BattlePlaneMgr.cs" />
+     <Compile Include="Assets\Scripts\Battle\BattleUserEnterScene.cs" />
+     <Compile Include="Assets\Scripts\Battle\BattleUserMove.cs" />
      <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
      <Compile Include="Assets\Scripts\Cover\Cover.cs" />
+     <Compile Include="Assets\Scripts\Cover\CoverForeGround.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\GroundScrolling.cs" />
      <Compile Include="Assets\Scripts\RendererExtensions.cs" />
