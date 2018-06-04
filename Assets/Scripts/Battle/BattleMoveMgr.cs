@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 public class BattleMove
 {
+	public BattleMoveMgr parent;
     //速度
     public Vector2 speed = new Vector2(0,0);
     //方向
@@ -14,6 +15,9 @@ public class BattleMoveMgr {
     public BattleMove battleMoveUser;
     public BattleMoveMgr(){
         this.battleMoveUser = new BattleMove();
+		this.battleMoveUser.parent = this;
     }
+	public void Clear(){
+	}
 
 }

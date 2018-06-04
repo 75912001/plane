@@ -40,7 +40,7 @@ public class BattleForeGround : MonoBehaviour {
             //加载子弹
             plane.battleBulletMgr.Add("Prefabs/Plane/p_09d_15");
             BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
-			BattleFire.battlePlane = plane;
+			BattleFire.parent = plane;
         }
 
         #endregion

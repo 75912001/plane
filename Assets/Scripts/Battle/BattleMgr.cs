@@ -1,7 +1,6 @@
-﻿
+﻿using UnityEngine;
 
-using UnityEngine;
-
+#region 战斗管理器
 public class BattleMgr{
 	//战斗关卡
 	public int level;
@@ -9,28 +8,30 @@ public class BattleMgr{
     public BattlePlaneMgr battlePlaneMgr;
 
     public BattleBackGroundMgr battleBackGroundMgr;
-    //战斗
-    public void Battle(){
 
-	}
 	public BattleMgr(){
         this.battlePlaneMgr = new BattlePlaneMgr();
         this.battleBackGroundMgr = new BattleBackGroundMgr();
+		#region 加载背景
+		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_01");
+		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
+		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_03");
+		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
+		#endregion
 	}
 	public void Clear(){
 		this.level = 0;
+		this.battlePlaneMgr.Clear ();
+		this.battleBackGroundMgr.Clear ();
 	}
-    public GameObject GetUserPlaneGameObject()
-    {
+    public GameObject GetUserPlaneGameObject(){
         return this.battlePlaneMgr.battlePlaneUser.gameObject;
     }
-    public Transform GetUserPlaneTransform()
-    {
+    public Transform GetUserPlaneTransform(){
         return this.battlePlaneMgr.battlePlaneUser.gameObject.transform;
     }
-    public BattlePlane GetUserPlane()
-    {
+    public BattlePlane GetUserPlane(){
         return this.battlePlaneMgr.battlePlaneUser;
     }
-
 }
+#endregion

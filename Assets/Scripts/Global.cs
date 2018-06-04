@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#region 全局数据
 public class Global {
 	public BattleMgr battleMgr;
 	private Global(){
@@ -16,3 +17,4 @@ public class Global {
 	}
 
 }
+#endregion

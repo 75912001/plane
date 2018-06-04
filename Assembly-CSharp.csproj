@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Battle\BattleBackGroundMgr.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleBulletMgr.cs" />
+     <Compile Include="Assets\Scripts\Battle\BattleBulletMove.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleFire.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleForeGround.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
