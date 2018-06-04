@@ -8,7 +8,7 @@ public class BattleFire : MonoBehaviour {
 	public BattlePlane battlePlane;
 	void Awake()
     {
-		this.battlePlane = new BattlePlane ();
+		//this.battlePlane = new BattlePlane ();
 	}
 	// Use this for initialization
 	void Start ()
@@ -49,7 +49,7 @@ public class BattleFire : MonoBehaviour {
             }
 
             GameObject bulletPrefab = Instantiate(bulletPrefabs, transform.position, transform.rotation);
-
+            bulletPrefab.transform.SetParent(this.battlePlane.gameObject.transform);
             Rigidbody2D rigidbody2D = bulletPrefab.AddComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0;
 
@@ -59,6 +59,7 @@ public class BattleFire : MonoBehaviour {
                 Debug.LogErrorFormat("开火失败 BattleBulletMove");
                 return;
             }
+
             battleBulletMove.battleBullet = battleBullet;
             if(Global.Instance.battleMgr.GetUserPlane() == battleBullet.battlePlane)
             {

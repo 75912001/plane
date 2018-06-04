@@ -11,9 +11,9 @@ public class BattleBullet
     public int bulletId;
 
     //开火冷却
-    public float fireCoolDown = 1.0f;
+    public float fireCoolDown = 0.10f;
     //开火 秒
-    public float fireTime = 1.0f;
+    public float fireTime = 0.10f;
 
     //子弹名称
     public string bulletName;
@@ -28,15 +28,15 @@ public class BattleBullet
     public BattlePlane battlePlane;
     //子弹归属者消失后,子弹是否消失
     //是否暂停
-    //子弹发射位置
+    //子弹发射位置(相对发射器的偏移量)
+    public Vector2 firePositionOffset;
     public BattleBullet()
     {
         this.battleBulletMoveMgr = new BattleBulletMoveMgr();
     }
     //是否可以攻击
     public bool CanFire(){
-        return this.fireCoolDown <= 0.0f;
-           // && this.battlePlane.isEnterSceneEnd;
+        return this.fireCoolDown <= 0.0f;//&& this.battlePlane.isEnterSceneEnd;
     }
 }
 

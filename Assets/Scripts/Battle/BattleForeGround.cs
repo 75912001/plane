@@ -9,37 +9,38 @@ public class BattleForeGround : MonoBehaviour {
     {
         #region 加载用户飞机
         {
-            //BattlePlane plane = Global.Instance.battleMgr.GetUserPlane();
+            BattlePlane plane = Global.Instance.battleMgr.GetUserPlane();
             //GameObject planeGameObject = plane.gameObject;
-            Global.Instance.battleMgr.GetUserPlane().name = "Prefabs/Plane/p_09d_0";
-            GameObject planePrefabs = (GameObject)Resources.Load(Global.Instance.battleMgr.GetUserPlane().name);
+            plane.name = "Prefabs/Plane/p_09d_0";
+            GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
             if (null == planePrefabs)
             {
-                Debug.LogErrorFormat("GroundScrolling未找到{0}", Global.Instance.battleMgr.GetUserPlane().name);
+                Debug.LogErrorFormat("GroundScrolling未找到{0}", plane.name);
             }
             Vector3 newPosition = transform.position;
             newPosition.x = 0;
             newPosition.y = -Camera.main.orthographicSize;
 
-            Global.Instance.battleMgr.GetUserPlane().gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
-            Global.Instance.battleMgr.GetUserPlaneTransform().SetParent(transform);
+            plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
+            plane.gameObject.transform.SetParent(transform);
             //移动速度
-            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.x = 2;
-            Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.y = 2;
+            plane.battleMoveMgr.battleMoveUser.speed.x = 2;
+            plane.battleMoveMgr.battleMoveUser.speed.y = 2;
 
 
 
-            Rigidbody2D rigidbody2D = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<Rigidbody2D>();
+            Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
 
-            BattleUserMove battleUserMove = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleUserMove>();
+            BattleUserMove battleUserMove = plane.gameObject.AddComponent<BattleUserMove>();
 
-            BattleUserEnterScene battleUserEnterScene = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleUserEnterScene>();
+            BattleUserEnterScene battleUserEnterScene = plane.gameObject.AddComponent<BattleUserEnterScene>();
 
-            Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser.battleBulletMgr.Add("Prefabs/Plane/p_09d_15");
-            BattleFire BattleFire = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleFire>();
-			BattleFire.battlePlane = Global.Instance.battleMgr.GetUserPlane();
+            //加载子弹
+            plane.battleBulletMgr.Add("Prefabs/Plane/p_09d_15");
+            BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
+			BattleFire.battlePlane = plane;
         }
 
         #endregion
