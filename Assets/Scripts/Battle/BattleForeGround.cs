@@ -36,6 +36,8 @@ public class BattleForeGround : MonoBehaviour {
             BattleUserMove battleUserMove = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleUserMove>();
 
             BattleUserEnterScene battleUserEnterScene = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleUserEnterScene>();
+
+            Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser.battleBulletMgr.Add("Prefabs/Plane/p_09d_15");
             BattleFire BattleFire = Global.Instance.battleMgr.GetUserPlane().gameObject.AddComponent<BattleFire>();
 			BattleFire.battlePlane = Global.Instance.battleMgr.GetUserPlane();
         }

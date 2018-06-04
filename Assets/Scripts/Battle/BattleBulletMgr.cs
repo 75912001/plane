@@ -29,10 +29,14 @@ public class BattleBullet
     //子弹归属者消失后,子弹是否消失
     //是否暂停
     //子弹发射位置
+    public BattleBullet()
+    {
+        this.battleBulletMoveMgr = new BattleBulletMoveMgr();
+    }
     //是否可以攻击
     public bool CanFire(){
-        return this.fireCoolDown <= 0.0f 
-            && this.battlePlane.isEnterSceneEnd;
+        return this.fireCoolDown <= 0.0f;
+           // && this.battlePlane.isEnterSceneEnd;
     }
 }
 
@@ -42,7 +46,13 @@ public class BattleBulletMgr {
     public BattleBulletMgr(){
         this.battleBulletList = new List<BattleBullet>();
     }
-
+    public void Add(string bulletName)
+    {
+        BattleBullet battleBullet = new BattleBullet();
+        battleBullet.bulletName = bulletName;
+        battleBullet.battleBulletMoveMgr.bulletMoveId = 1;
+        this.battleBulletList.Add(battleBullet);
+    }
 }
 
 
@@ -51,9 +61,9 @@ public class BattleBulletMoveMgr
     //子弹移动类型
     public int bulletMoveId;
     //速度
-    public Vector2 speed = new Vector2(10, 0);
+    public Vector2 speed = new Vector2(0, 10);
     //方向
-    public Vector2 direction = new Vector2(1, 0);
+    public Vector2 direction = new Vector2(0, 1);
     public Vector2 movement;
     public void Update()
     {
