@@ -5,6 +5,8 @@ public class BattlePlane
 {
     //飞机
     public GameObject gameObject;
+    //飞机名称
+    public string name;
 
     //子弹管理器
     public BattleBulletMgr battleBulletMgr;
