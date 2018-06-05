@@ -8,8 +8,9 @@ public class BattleBulletMove : MonoBehaviour {
 	public BattleBullet parent;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        //n秒后自动销毁
+        Destroy(gameObject, 10);
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -12,10 +12,10 @@ public class BattleMove
 }
 
 public class BattleMoveMgr {
-    public BattleMove battleMoveUser;
+    public BattleMove battleMove;
     public BattleMoveMgr(){
-        this.battleMoveUser = new BattleMove();
-		this.battleMoveUser.parent = this;
+        this.battleMove = new BattleMove();
+		this.battleMove.parent = this;
     }
 	public void Clear(){
 	}

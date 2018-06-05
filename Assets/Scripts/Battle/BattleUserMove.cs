@@ -16,8 +16,8 @@ public class BattleUserMove : MonoBehaviour {
         #region 移动
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
-        this.movement = new Vector2(inputX*Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.x,
-             inputY* Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMoveUser.speed.x);
+        this.movement = new Vector2(inputX*Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMove.speed.x,
+             inputY* Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMove.speed.x);
         #endregion
         #region 防止移动出摄像机范围 
         {
