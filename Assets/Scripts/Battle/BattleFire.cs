@@ -52,11 +52,17 @@ public class BattleFire : MonoBehaviour {
                 return;
             }
 			battleBulletMove.parent = battleBullet;
+			battleBullet.battleBulletMoveGameObject = battleBulletMove.gameObject;
 
-			if(Global.Instance.battleMgr.GetUserPlane() == battleBullet.parent.parent){
-                battleBullet.battleBulletMoveMgr.direction.y = 1;
+			battleBulletMove.speed = new Vector2(0, 10);
+			battleBulletMove.direction = new Vector2(0, 1);
+			battleBulletMove.bulletMoveTrace = EnumMoveTrace.Line;
+
+
+			if(plane.isUser()){
+				battleBulletMove.direction.y = 1;
             } else {
-                battleBullet.battleBulletMoveMgr.direction.y = -1;
+				battleBulletMove.direction.y = -1;
             }
         }
     }
