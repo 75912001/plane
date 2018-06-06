@@ -3,26 +3,20 @@
 #region 战斗管理器
 public class BattleMgr{
 	//战斗关卡
-	public int level;
-
+	public uint level;
+    //战机 管理器
     public BattlePlaneMgr battlePlaneMgr;
-
+    //战斗 背景 管理器
     public BattleBackGroundMgr battleBackGroundMgr;
 
 	public BattleMgr(){
         this.battlePlaneMgr = new BattlePlaneMgr();
         this.battleBackGroundMgr = new BattleBackGroundMgr();
-		#region 加载背景
-		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_01");
-		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
-		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_03");
-		this.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
-		#endregion
-	}
+    }
 	public void Clear(){
 		this.level = 0;
-		this.battlePlaneMgr.Clear ();
-		this.battleBackGroundMgr.Clear ();
+		this.battlePlaneMgr.Clear();
+		this.battleBackGroundMgr.Clear();
 	}
     public GameObject GetUserPlaneGameObject(){
         return this.battlePlaneMgr.battlePlaneUser.gameObject;

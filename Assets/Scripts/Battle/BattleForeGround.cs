@@ -3,48 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleForeGround : MonoBehaviour {
-
-    
 	// Use this for initialization
-	void Start ()
-    {
+	void Start (){
+        BattleMgr battleMgr = Global.Instance.battleMgr;
+        BattlePlaneMgr battlePlaneMgr = battleMgr.battlePlaneMgr;
+        BattlePlane battlePlaneUser = battlePlaneMgr.battlePlaneUser; 
         #region 加载用户飞机
         {
-            BattlePlane plane = Global.Instance.battleMgr.GetUserPlane();
-            //GameObject planeGameObject = plane.gameObject;
-            plane.name = "Prefabs/Plane/p_09d_0";
-            plane.isVisble = true;
-            GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
+            battlePlaneUser.name = "Prefabs/Plane/p_09d_0";
+            battlePlaneUser.isVisble = true;
+            GameObject planePrefabs = (GameObject)Resources.Load(battlePlaneUser.name);
             if (null == planePrefabs){
-                Debug.LogErrorFormat("GroundScrolling未找到{0}", plane.name);
+                Debug.LogErrorFormat("GroundScrolling未找到{0}", battlePlaneUser.name);
             }
             Vector3 newPosition = transform.position;
             newPosition.x = 0;
             newPosition.y = -Camera.main.orthographicSize;
 
-            plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
-            plane.gameObject.transform.SetParent(transform);
+            battlePlaneUser.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
+            battlePlaneUser.gameObject.transform.SetParent(transform);
             //移动速度
             //plane.battleMove.speed = new Vector2(2,2);
 
-            Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
+            Rigidbody2D rigidbody2D = battlePlaneUser.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
 
-            BattlePlaneMove battlePlaneMove = plane.gameObject.AddComponent<BattlePlaneMove>();
-            battlePlaneMove.parent = plane;
+            BattlePlaneMove battlePlaneMove = battlePlaneUser.gameObject.AddComponent<BattlePlaneMove>();
+            battlePlaneMove.parent = battlePlaneUser;
             //移动速度
             battlePlaneMove.speed = new Vector2(2, 2);
 
-            BattleUserMove battleUserMove = plane.gameObject.AddComponent<BattleUserMove>();
+            BattleUserMove battleUserMove = battlePlaneUser.gameObject.AddComponent<BattleUserMove>();
             battleUserMove.battlePlaneMove = battlePlaneMove;
 
-            BattleUserEnterScene battleUserEnterScene = plane.gameObject.AddComponent<BattleUserEnterScene>();
+            BattleUserEnterScene battleUserEnterScene = battlePlaneUser.gameObject.AddComponent<BattleUserEnterScene>();
 
             //加载子弹
-            plane.battleBulletMgr.Add("Prefabs/Bullet/p_09d_15");
-            BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
-			BattleFire.parent = plane;
+            battlePlaneUser.battleBulletMgr.Add("Prefabs/Bullet/p_09d_15");
+            BattleFire BattleFire = battlePlaneUser.gameObject.AddComponent<BattleFire>();
+			BattleFire.parent = battlePlaneUser;
         }
         #endregion
 

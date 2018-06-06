@@ -11,8 +11,19 @@ public class ButtonBattleEvent : MonoBehaviour {
 		btnListener.OnClick += delegate(GameObject gb) {
 			Debug.Log(gb.name + " OnClick");
 
-			Global.Instance.battleMgr.level = 1;
-			SceneManager.LoadScene("Scenes/Battle");//切换到场景 
+            BattleMgr battleMgr = Global.Instance.battleMgr;
+            battleMgr.Clear();
+
+            battleMgr.level = 1;
+
+            #region 加载背景
+            battleMgr.battleBackGroundMgr.Add("Prefabs/BackGround/forest_01");
+            battleMgr.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
+            battleMgr.battleBackGroundMgr.Add("Prefabs/BackGround/forest_03");
+            battleMgr.battleBackGroundMgr.Add("Prefabs/BackGround/forest_02");
+            #endregion
+
+            SceneManager.LoadScene("Scenes/Battle");//切换到场景 
 		};
 
 		btnListener.OnMouseEnter += delegate(GameObject gb) {

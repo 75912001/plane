@@ -4,7 +4,6 @@ using UnityEngine;
 
 #region 战斗中的飞机
 public class BattlePlane{
-    public BattlePlaneMgr parent;
     //飞机
     public GameObject gameObject;
     //飞机名称
@@ -23,7 +22,9 @@ public class BattlePlane{
     public bool isEnterSceneEnd;
     //是否可见的.在摄像机可见
     public bool isVisble;
-
+    public bool isUser(){
+        return this == Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser;
+    }
     public BattlePlane(){
         this.battleBulletMgr = new BattleBulletMgr();
 		this.battleBulletMgr.parent = this;
@@ -58,7 +59,6 @@ public class BattlePlaneMgr{
     public float enemyFlyCoolDownTime;
     public BattlePlaneMgr(){
         this.battlePlaneUser = new BattlePlane();
-        this.battlePlaneUser.parent = this;
 		this.battlePlaneEnemyList = new List<BattlePlane> ();
         this.parkingApronBattlePlaneEnemyList = new List<BattlePlane>();
         this.enemyFlyCoolDownTime = 1.0f;

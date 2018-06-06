@@ -11,7 +11,7 @@ public class BattleBackGroundMgr {
         this.backGroundNameList = new List<string>();
     }
 	public void Clear(){
-		this.backGroundNameList.Clear ();
+		this.backGroundNameList.Clear();
 	}
 	//添加背景
 	public void Add(string backGroundName){

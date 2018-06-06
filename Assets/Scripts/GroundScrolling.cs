@@ -31,10 +31,10 @@ public class GroundScrolling : MonoBehaviour {
 	void Start () {
 		#region 应该在初始化场景时设置好具体参数
 		this.speed.y = 0.1f;
-		#endregion
+        #endregion
 
         #region 创建背景
-		float fixY = 0.0f;
+        float fixY = 0.0f;
 		foreach (var data in Global.Instance.battleMgr.battleBackGroundMgr.backGroundNameList) {
 			GameObject backGroundPrefabs = (GameObject)Resources.Load(data);
 			if (null == backGroundPrefabs) {
