@@ -26,7 +26,7 @@ public class BattleBullet{
     //子弹归属者消失后,子弹是否消失
     //是否暂停
     //子弹发射位置(相对发射器的偏移量)
-    public Vector2 firePositionOffset;
+    public Vector2 firePositionOffset = new Vector2(0, 0);
     public BattleBullet(){
         this.battleBulletMoveMgr = new BattleBulletMoveMgr();
 		this.battleBulletMoveMgr.parent = this;
@@ -42,8 +42,7 @@ public class BattleBullet{
 		this.fireTime = 0f;
 		this.damage = 0;
 		this.battleBulletMoveMgr.Clear ();
-		this.firePositionOffset.x = 0f;
-		this.firePositionOffset.y = 0f;
+        this.firePositionOffset = new Vector2(0, 0);
 	}
 }
 #endregion
@@ -62,10 +61,9 @@ public class BattleBulletMgr {
 		battleBullet.bulletId = 1;
 		battleBullet.fireCoolDown = 0.1f;
 		battleBullet.fireTime = 0.2f;
-        battleBullet.battleBulletMoveMgr.bulletMoveId = 1;
+        battleBullet.battleBulletMoveMgr.bulletMoveTrace = EnumMoveTrace.Line;
 		battleBullet.damage = 1;
-		battleBullet.firePositionOffset.x = 0f;
-		battleBullet.firePositionOffset.y = 0f;
+        battleBullet.firePositionOffset = new Vector2(0,0);
 
 		battleBullet.battleBulletMoveMgr.speed = new Vector2(0, 10);
 		battleBullet.battleBulletMoveMgr.direction = new Vector2(0, 1);

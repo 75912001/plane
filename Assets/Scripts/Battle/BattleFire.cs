@@ -24,10 +24,11 @@ public class BattleFire : MonoBehaviour {
 
     //开火
     public void Fire(){
-		if (!this.parent.CanFire ()) {
+        BattlePlane plane = this.parent;
+		if (!plane.CanFire ()) {
 			return;
 		}
-		foreach (var battleBullet in this.parent.battleBulletMgr.battleBulletList){
+		foreach (var battleBullet in plane.battleBulletMgr.battleBulletList){
             if (!battleBullet.CanFire()){
                 continue;
             }
@@ -40,7 +41,7 @@ public class BattleFire : MonoBehaviour {
             }
 			//todo 计算子弹的偏移量，得出发射的初始位置
             GameObject bulletPrefab = Instantiate(bulletPrefabs, transform.position, transform.rotation);
-			bulletPrefab.transform.SetParent(this.parent.gameObject.transform);
+			bulletPrefab.transform.SetParent(plane.gameObject.transform);
 
             Rigidbody2D rigidbody2D = bulletPrefab.AddComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0;

@@ -18,3 +18,13 @@ public class Global {
 
 }
 #endregion
+
+
+
+#region 运动轨迹
+public enum EnumMoveTrace :uint
+{
+    //直线
+    Line = 1
+};
+#endregion

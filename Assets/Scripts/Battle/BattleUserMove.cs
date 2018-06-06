@@ -5,6 +5,7 @@ using UnityEngine;
 //战斗 用户 移动
 public class BattleUserMove : MonoBehaviour {
 
+    public BattlePlaneMove battlePlaneMove;
     private Vector2 movement = new Vector2(1, 1);
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,8 @@ public class BattleUserMove : MonoBehaviour {
         #region 移动
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
-        this.movement = new Vector2(inputX*Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMove.speed.x,
-             inputY* Global.Instance.battleMgr.GetUserPlane().battleMoveMgr.battleMove.speed.x);
+        this.movement = new Vector2(inputX* this.battlePlaneMove.speed.x,
+             inputY* this.battlePlaneMove.speed.x);
         #endregion
         #region 防止移动出摄像机范围 
         {

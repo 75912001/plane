@@ -11,8 +11,6 @@ public class BattlePlane{
     public string name;
     //子弹管理器
     public BattleBulletMgr battleBulletMgr;
-    //移动管理器
-    public BattleMoveMgr battleMoveMgr;
     //是否僚机
 	public bool isWingman;
     //归属飞机
@@ -23,21 +21,20 @@ public class BattlePlane{
     //todo 是否可碰撞己方飞机
     //入场飞行是否结束
     public bool isEnterSceneEnd;
-    //是否在飞翔
-    public bool isFly;
+    //是否可见的.在摄像机可见
+    public bool isVisble;
+
     public BattlePlane(){
         this.battleBulletMgr = new BattleBulletMgr();
 		this.battleBulletMgr.parent = this;
-        this.battleMoveMgr = new BattleMoveMgr();
     }
     public void Clear(){
         this.gameObject = null;
         this.name = "";
         this.battleBulletMgr.Clear();
-        this.battleMoveMgr.Clear();
         this.isEnterSceneEnd = false;
         this.isWingman = false;
-        this.isFly = false;
+        this.isVisble = false;
     }
 
     //是否无敌
@@ -46,7 +43,7 @@ public class BattlePlane{
     }
 	//是否可以开火
 	public bool CanFire(){
-		return false != this.isEnterSceneEnd;
+		return false != this.isEnterSceneEnd && this.isVisble;
 	}
 }
 #endregion

@@ -13,6 +13,7 @@ public class BattleForeGround : MonoBehaviour {
             BattlePlane plane = Global.Instance.battleMgr.GetUserPlane();
             //GameObject planeGameObject = plane.gameObject;
             plane.name = "Prefabs/Plane/p_09d_0";
+            plane.isVisble = true;
             GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
             if (null == planePrefabs){
                 Debug.LogErrorFormat("GroundScrolling未找到{0}", plane.name);
@@ -24,14 +25,19 @@ public class BattleForeGround : MonoBehaviour {
             plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
             plane.gameObject.transform.SetParent(transform);
             //移动速度
-            plane.battleMoveMgr.battleMove.speed.x = 2;
-            plane.battleMoveMgr.battleMove.speed.y = 2;
+            //plane.battleMove.speed = new Vector2(2,2);
 
             Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
 
+            BattlePlaneMove battlePlaneMove = plane.gameObject.AddComponent<BattlePlaneMove>();
+            battlePlaneMove.parent = plane;
+            //移动速度
+            battlePlaneMove.speed = new Vector2(2, 2);
+
             BattleUserMove battleUserMove = plane.gameObject.AddComponent<BattleUserMove>();
+            battleUserMove.battlePlaneMove = battlePlaneMove;
 
             BattleUserEnterScene battleUserEnterScene = plane.gameObject.AddComponent<BattleUserEnterScene>();
 
@@ -39,13 +45,11 @@ public class BattleForeGround : MonoBehaviour {
             plane.battleBulletMgr.Add("Prefabs/Bullet/p_09d_15");
             BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
 			BattleFire.parent = plane;
-
-            
         }
         #endregion
 
         #region 加载敌人飞机
-        
+
         for (int i = 0; i < 10; i++){
             BattlePlane plane = new BattlePlane {
                 name = "Prefabs/Enemy/a-11_0"
@@ -55,15 +59,12 @@ public class BattleForeGround : MonoBehaviour {
                 Debug.LogErrorFormat("BattleForeGround未找到{0}", plane.name);
             }
             Vector3 newPosition = transform.position;
-            newPosition.x = 0;
+            newPosition.x = i;
             newPosition.y = 2 * Camera.main.orthographicSize;
             newPosition.z = transform.position.z + 1;
 
             plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
             plane.gameObject.transform.SetParent(transform);
-            //移动速度
-            plane.battleMoveMgr.battleMove.speed.x = 1;
-            plane.battleMoveMgr.battleMove.speed.y = 1;
 
             Global.Instance.battleMgr.battlePlaneMgr.parkingApronBattlePlaneEnemyList.Add(plane);
         }
@@ -89,34 +90,33 @@ public class BattleForeGround : MonoBehaviour {
         }
         Global.Instance.battleMgr.battlePlaneMgr.enemyFlyTime = Global.Instance.battleMgr.battlePlaneMgr.enemyFlyCoolDownTime;
 
-        //定时创造敌机
-        BattlePlane plane = new BattlePlane();
+        #region 从停机坪 -> 起飞战斗
+        List<BattlePlane> battlePlaneEnemyList = Global.Instance.battleMgr.battlePlaneMgr.battlePlaneEnemyList;
+        List<BattlePlane> parkingApronBattlePlaneEnemyList =  Global.Instance.battleMgr.battlePlaneMgr.parkingApronBattlePlaneEnemyList;
+        if (0 < parkingApronBattlePlaneEnemyList.Count){
+            BattlePlane plane = parkingApronBattlePlaneEnemyList[0];
+            battlePlaneEnemyList.Add(plane);
+            parkingApronBattlePlaneEnemyList.RemoveAt(0);
 
-        plane.name = "Prefabs/Enemy/a-11_0";
-        GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
-        if (null == planePrefabs){
-            Debug.LogErrorFormat("BattleForeGround未找到{0}", plane.name);
+            plane.isEnterSceneEnd = true;
+            #region 添加组件
+            Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
+            //无引力
+            rigidbody2D.gravityScale = 0;
+
+            BattlePlaneMove battlePlaneMove = plane.gameObject.AddComponent<BattlePlaneMove>();
+            battlePlaneMove.parent = plane;
+            //移动速度
+            battlePlaneMove.speed = new Vector2(1,1);
+            battlePlaneMove.direction = new Vector2(0,-1);
+            battlePlaneMove.moveTrace = EnumMoveTrace.Line;
+
+            //加载子弹
+            plane.battleBulletMgr.Add("Prefabs/Bullet/bullet-01_0");
+            BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
+            BattleFire.parent = plane;
+            #endregion
         }
-        Vector3 newPosition = transform.position;
-        newPosition.x = 0;
-        newPosition.y = 2 * Camera.main.orthographicSize;
-        newPosition.z = transform.position.z + 1;
-
-        plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
-        plane.gameObject.transform.SetParent(transform);
-        //移动速度
-        plane.battleMoveMgr.battleMove.speed.x = 1;
-        plane.battleMoveMgr.battleMove.speed.y = 1;
-
-        Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
-        //无引力
-        rigidbody2D.gravityScale = 1;
-
- //       BattleUserMove battleUserMove = plane.gameObject.AddComponent<BattlePlaneMove>();
-
-        //加载子弹
-        plane.battleBulletMgr.Add("Prefabs/Bullet/bullet-01_0");
-        BattleFire BattleFire = plane.gameObject.AddComponent<BattleFire>();
-        BattleFire.parent = plane;
+        #endregion
     }
 }

@@ -28,24 +28,24 @@ public class BattleBulletMoveMgr{
 	//归属
 	public BattleBullet parent;
 	//子弹移动类型
-	public int bulletMoveId;
+	public EnumMoveTrace bulletMoveTrace;
 	//速度
-	public Vector2 speed;
+	public Vector2 speed = new Vector2(0,0);
 	//方向
-	public Vector2 direction;
-	public Vector2 movement;
+	public Vector2 direction = new Vector2(0, 0);
+	public Vector2 movement = new Vector2(0, 0);
 	public void Update(){
-		switch (this.bulletMoveId) {
-		case 1://直线
+		switch (this.bulletMoveTrace) {
+            case EnumMoveTrace.Line://直线
 			this.movement = new Vector2 (this.speed.x * this.direction.x, this.speed.y * this.direction.y);
 			break;
 		default:
-			Debug.LogErrorFormat ("子弹 移动类型{0}", this.bulletMoveId);
+			Debug.LogErrorFormat ("子弹 移动类型{0}", this.bulletMoveTrace);
 			break;
 		}
 	}
 	public void Clear(){
-		this.bulletMoveId = 0;
+		this.bulletMoveTrace = 0;
 		this.speed = new Vector2(0, 0);
 		this.direction = new Vector2(0, 0);
 		this.movement = new Vector2(0, 0);
