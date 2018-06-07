@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region 战斗中的飞机
-public class BattlePlane{
+public class BtlPlane{
     //飞机
     public GameObject gameObject;
     //飞机名称
     public string name;
     //子弹管理器
-    public BattleBulletMgr battleBulletMgr;
+    public BtlBulletMgr btlBulletMgr;
+    public BtlMove btlMove;
     //是否僚机
-	public bool isWingman;
+    public bool isWingman;
     //归属飞机
-	public BattlePlane parentBattlePlane;
+	public BtlPlane parentBtlPlane;
     //todo 僚机AI
     //todo hp
     //todo 碰撞后给予敌方造成的伤害
@@ -22,22 +23,26 @@ public class BattlePlane{
     public bool isEnterSceneEnd;
     //是否可见的.在摄像机可见
     public bool isVisble;
-    public bool isUser(){
-        return this == Global.Instance.battleMgr.battlePlaneMgr.battlePlaneUser;
-    }
-    public BattlePlane(){
-        this.battleBulletMgr = new BattleBulletMgr();
-		this.battleBulletMgr.parent = this;
+
+    public BtlPlane(){
+        this.btlBulletMgr = new BtlBulletMgr();
+        this.btlMove = new BtlMove();
+		this.btlBulletMgr.parent = this;
     }
     public void Clear(){
         this.gameObject = null;
         this.name = "";
-        this.battleBulletMgr.Clear();
+        this.btlBulletMgr.Clear();
+        this.btlMove.Clear();
         this.isEnterSceneEnd = false;
         this.isWingman = false;
         this.isVisble = false;
     }
-
+    //该飞机是否是用户
+    public bool isUser()
+    {
+        return this == Global.Instance.btlMgr.btlPlaneMgr.btlPlaneUser;
+    }
     //是否无敌
     public bool IsInvincible(){
         return false == this.isEnterSceneEnd;
@@ -50,24 +55,24 @@ public class BattlePlane{
 #endregion
 
 #region 战斗中的飞机管理器
-public class BattlePlaneMgr{
-    public BattlePlane battlePlaneUser;
-	public List<BattlePlane> battlePlaneEnemyList;
-    public List<BattlePlane> parkingApronBattlePlaneEnemyList;
+public class BtlPlaneMgr{
+    public BtlPlane btlPlaneUser;
+	public List<BtlPlane> btlPlaneEnemyList;
+    public List<BtlPlane> parkingApronBtlPlaneEnemyList;
     public float enemyFlyTime;
     //敌机 起飞 冷却时间
     public float enemyFlyCoolDownTime;
-    public BattlePlaneMgr(){
-        this.battlePlaneUser = new BattlePlane();
-		this.battlePlaneEnemyList = new List<BattlePlane> ();
-        this.parkingApronBattlePlaneEnemyList = new List<BattlePlane>();
+    public BtlPlaneMgr(){
+        this.btlPlaneUser = new BtlPlane();
+		this.btlPlaneEnemyList = new List<BtlPlane> ();
+        this.parkingApronBtlPlaneEnemyList = new List<BtlPlane>();
         this.enemyFlyCoolDownTime = 1.0f;
         this.enemyFlyTime = 1.0f;
     }
 	public void Clear(){
-		this.battlePlaneUser.Clear();
-		this.battlePlaneEnemyList.Clear();
-        this.parkingApronBattlePlaneEnemyList.Clear();
+		this.btlPlaneUser.Clear();
+		this.btlPlaneEnemyList.Clear();
+        this.parkingApronBtlPlaneEnemyList.Clear();
         this.enemyFlyCoolDownTime = 1.0f;
         this.enemyFlyTime = 1.0f;
     }

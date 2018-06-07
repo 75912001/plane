@@ -4,9 +4,9 @@ using UnityEngine;
 
 #region 全局数据
 public class Global {
-	public BattleMgr battleMgr;
+	public BtlMgr btlMgr;
 	private Global(){
-		this.battleMgr = new BattleMgr ();
+		this.btlMgr = new BtlMgr ();
 	}
 	//private static readonly Global instance = new Global();
 	private static Global instance = new Global();

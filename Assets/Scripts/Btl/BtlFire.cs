@@ -1,0 +1,67 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+#region 开火 组件
+public class BtlFire : MonoBehaviour {
+	//归属 飞机
+	public BtlPlane parent;
+	void Awake(){
+	}
+	// Use this for initialization
+	void Start (){
+	}
+	
+	// Update is called once per frame
+	void Update (){
+		foreach (var btlBullet in this.parent.btlBulletMgr.btlBulletList){
+            if (0 < btlBullet.fireCoolDown){
+                btlBullet.fireCoolDown -= Time.deltaTime;
+            }
+        }
+        this.Fire();
+	}
+
+    //开火
+    public void Fire(){
+        BtlPlane plane = this.parent;
+		if (!plane.CanFire ()) {
+			return;
+		}
+		foreach (var bullet in plane.btlBulletMgr.btlBulletList){
+            if (!bullet.CanFire()){
+                continue;
+            }
+            bullet.fireCoolDown = bullet.fireTime;
+
+            GameObject bulletPrefabs = (GameObject)Resources.Load(bullet.bulletName);
+            if (null == bulletPrefabs){
+                Debug.LogErrorFormat("开火失败{0}", bullet.bulletName);
+                return;
+            }
+			//todo 计算子弹的偏移量，得出发射的初始位置
+            GameObject bulletPrefab = Instantiate(bulletPrefabs, transform.position, transform.rotation);
+			bulletPrefab.transform.SetParent(plane.gameObject.transform);
+
+            Rigidbody2D rigidbody2D = bulletPrefab.AddComponent<Rigidbody2D>();
+            rigidbody2D.gravityScale = 0;
+
+            BtlBulletMove btlBulletMove = bulletPrefab.AddComponent<BtlBulletMove>();
+            if (null == btlBulletMove){
+                Debug.LogErrorFormat("开火失败 BattleBulletMove");
+                return;
+            }
+			btlBulletMove.parent = bullet;
+
+            bullet.btlMove.moveTrace = EnumMoveTrace.Line;
+			if(plane.isUser()){
+                bullet.btlMove.speed = new Vector2(0, 10);
+                bullet.btlMove.direction = new Vector2(0, 1);
+            } else {
+                bullet.btlMove.speed = new Vector2(0, 2);
+                bullet.btlMove.direction = new Vector2(0, -1);
+            }
+        }
+    }
+}
+#endregion

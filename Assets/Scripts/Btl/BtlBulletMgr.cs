@@ -6,12 +6,12 @@ using UnityEngine;
 
 
 #region 战斗中子弹
-public class BattleBullet{
+public class BtlBullet{
 	//归属
-	public BattleBulletMgr parent;
-	public GameObject battleBulletMoveGameObject ;
-	//子弹名称
-	public string bulletName;
+	public BtlBulletMgr parent;
+    public BtlMove btlMove;
+    //子弹名称
+    public string bulletName;
     //子弹类型
     public int bulletId;
     //开火冷却 秒
@@ -28,7 +28,8 @@ public class BattleBullet{
     //是否暂停
     //子弹发射位置(相对发射器的偏移量)
     public Vector2 firePositionOffset = new Vector2(0, 0);
-    public BattleBullet(){
+    public BtlBullet(){
+        this.btlMove = new BtlMove();
     }
     //是否可以攻击
     public bool CanFire(){
@@ -36,43 +37,40 @@ public class BattleBullet{
     }
 	public void Clear(){
 		this.parent = null;
-		this.battleBulletMoveGameObject = null;
 		this.bulletName = "";
 		this.bulletId = 0;
 		this.fireCoolDown = 0f;
 		this.fireTime = 0f;
 		this.damage = 0;
         this.firePositionOffset = new Vector2(0, 0);
+        this.btlMove.Clear();
 	}
 }
 #endregion
+
 #region 战斗中子弹管理器
-public class BattleBulletMgr {
-    public List<BattleBullet> battleBulletList;
+public class BtlBulletMgr {
+    public List<BtlBullet> btlBulletList;
 	//归属飞机
-	public BattlePlane parent;
-    public BattleBulletMgr(){
-        this.battleBulletList = new List<BattleBullet>();
+	public BtlPlane parent;
+    public BtlBulletMgr(){
+        this.btlBulletList = new List<BtlBullet>();
     }
     public void Add(string bulletName){
-        BattleBullet battleBullet = new BattleBullet();
+        BtlBullet battleBullet = new BtlBullet();
 		battleBullet.parent = this;
         battleBullet.bulletName = bulletName;
 		battleBullet.bulletId = 1;
 		battleBullet.fireCoolDown = 0.1f;
 		battleBullet.fireTime = 0.2f;
-
-
-
         
 		battleBullet.damage = 1;
         battleBullet.firePositionOffset = new Vector2(0,0);
 
-
-        this.battleBulletList.Add(battleBullet);
+        this.btlBulletList.Add(battleBullet);
     }
 	public void Clear(){
-		this.battleBulletList.Clear ();
+		this.btlBulletList.Clear ();
 	}
 }
 #endregion

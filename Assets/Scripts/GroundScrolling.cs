@@ -35,7 +35,7 @@ public class GroundScrolling : MonoBehaviour {
 
         #region 创建背景
         float fixY = 0.0f;
-		foreach (var data in Global.Instance.battleMgr.battleBackGroundMgr.backGroundNameList) {
+		foreach (var data in Global.Instance.btlMgr.btlBGMgr.bgNameList) {
 			GameObject backGroundPrefabs = (GameObject)Resources.Load(data);
 			if (null == backGroundPrefabs) {
 				Debug.LogErrorFormat ("GroundScrolling未找到{0}",data);

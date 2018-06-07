@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//战斗 用户 移动
-public class BattleUserMove : MonoBehaviour {
-
-    public BattlePlaneMove battlePlaneMove;
-    private Vector2 movement = new Vector2(1, 1);
-	// Use this for initialization
+#region 战斗中用户操作移动组件
+public class BtlUserMove : MonoBehaviour {
+    //组件归属
+    public BtlPlane parent;
+    // Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        #region 移动
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
-        this.movement = new Vector2(inputX* this.battlePlaneMove.speed.x,
-             inputY* this.battlePlaneMove.speed.x);
-        #endregion
+        this.parent.btlMove.movement = new Vector2(inputX* this.parent.btlMove.speed.x, inputY* this.parent.btlMove.speed.x);
+
         #region 防止移动出摄像机范围 
         {
             var dist = (transform.position - Camera.main.transform.position).z;
@@ -38,6 +34,7 @@ public class BattleUserMove : MonoBehaviour {
 
     void FixedUpdate(){
         //移动
-        GetComponent<Rigidbody2D>().velocity = this.movement;
+        GetComponent<Rigidbody2D>().velocity = this.parent.btlMove.movement;
     }
 }
+#endregion

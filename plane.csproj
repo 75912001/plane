@@ -247,16 +247,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Battle\BattleBackGroundMgr.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleBulletMgr.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleBulletMove.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleFire.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleForeGround.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleMgr.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattlePlaneMgr.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattlePlaneMove.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleUserEnterScene.cs" />
-    <Compile Include="Assets\Scripts\Battle\BattleUserMove.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlBGMgr.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlBulletMgr.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlBulletMove.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlFG.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlFire.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlMgr.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlMove.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlPlaneMgr.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlPlaneMove.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlUserEnterScene.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlUserMove.cs" />
     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
     <Compile Include="Assets\Scripts\Cover\Cover.cs" />
     <Compile Include="Assets\Scripts\Cover\CoverForeGround.cs" />
