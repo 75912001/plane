@@ -28,6 +28,7 @@ public class BtlFG : MonoBehaviour {
             Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
+            BoxCollider2D boxCollider2D = plane.gameObject.AddComponent<BoxCollider2D>();
 
             //移动速度
             plane.btlMove.speed = new Vector2(2, 2);
@@ -100,6 +101,7 @@ public class BtlFG : MonoBehaviour {
             Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
+            BoxCollider2D boxCollider2D = plane.gameObject.AddComponent<BoxCollider2D>();
 
             BtlPlaneMove btlPlaneMove = plane.gameObject.AddComponent<BtlPlaneMove>();
             btlPlaneMove.parent = plane;

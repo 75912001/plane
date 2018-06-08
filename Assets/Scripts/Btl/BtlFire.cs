@@ -45,6 +45,7 @@ public class BtlFire : MonoBehaviour {
 
             Rigidbody2D rigidbody2D = bulletPrefab.AddComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0;
+            BoxCollider2D boxCollider2D = bulletPrefab.AddComponent<BoxCollider2D>();
 
             BtlBulletMove btlBulletMove = bulletPrefab.AddComponent<BtlBulletMove>();
             if (null == btlBulletMove){
