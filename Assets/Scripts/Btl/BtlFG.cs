@@ -13,6 +13,7 @@ public class BtlFG : MonoBehaviour {
             #region 加载用户飞机
             BtlPlane plane = btlPlaneMgr.btlPlaneUser;
             plane.name = "Prefabs/Plane/p_09d_0";
+			plane.camp = EnumCamp.Green;
             plane.isVisble = true;
             GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
             if (null == planePrefabs){
@@ -50,7 +51,8 @@ public class BtlFG : MonoBehaviour {
             #region 加载敌人飞机 -> 停机坪
             for (int i = 0; i < 10; i++){
                 BtlPlane plane = new BtlPlane{
-                    name = "Prefabs/Enemy/a-11_0"
+                    name = "Prefabs/Enemy/a-11_0",
+					camp = EnumCamp.Red
                 };
                 GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
                 if (null == planePrefabs){

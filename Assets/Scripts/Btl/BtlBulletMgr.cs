@@ -9,6 +9,8 @@ using UnityEngine;
 public class BtlBullet{
 	//归属
 	public BtlBulletMgr parent;
+	//子弹
+	public GameObject gameObject;
     public BtlMove btlMove;
     //子弹名称
     public string bulletName;
@@ -37,6 +39,7 @@ public class BtlBullet{
     }
 	public void Clear(){
 		this.parent = null;
+		this.gameObject = null;
 		this.bulletName = "";
 		this.bulletId = 0;
 		this.fireCoolDown = 0f;

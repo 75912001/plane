@@ -6,6 +6,8 @@ using UnityEngine;
 public class BtlPlane{
     //飞机
     public GameObject gameObject;
+	//阵营
+	public EnumCamp camp;
     //飞机名称
     public string name;
     //子弹管理器

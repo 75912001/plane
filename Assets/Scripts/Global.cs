@@ -20,7 +20,13 @@ public class Global {
 #endregion
 
 
-
+#region 阵营
+public enum EnumCamp:uint
+{
+	Green = 1,//绿
+	Red = 2//红
+};
+#endregion
 #region 运动轨迹
 public enum EnumMoveTrace :uint
 {

@@ -39,15 +39,18 @@ public class BtlFire : MonoBehaviour {
                 Debug.LogErrorFormat("开火失败{0}", bullet.bulletName);
                 return;
             }
+
 			//todo 计算子弹的偏移量，得出发射的初始位置
-            GameObject bulletPrefab = Instantiate(bulletPrefabs, transform.position, transform.rotation);
-			bulletPrefab.transform.SetParent(plane.gameObject.transform);
+			bullet.gameObject = Instantiate(bulletPrefabs, transform.position, transform.rotation);
+			#region 此处设置，飞机销毁，子弹也会随父节点销毁
+			//bulletPrefab.transform.SetParent(plane.gameObject.transform);
+			#endregion
 
-            Rigidbody2D rigidbody2D = bulletPrefab.AddComponent<Rigidbody2D>();
+			Rigidbody2D rigidbody2D = bullet.gameObject.AddComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0;
-            BoxCollider2D boxCollider2D = bulletPrefab.AddComponent<BoxCollider2D>();
+			BoxCollider2D boxCollider2D = bullet.gameObject.AddComponent<BoxCollider2D>();
 
-            BtlBulletMove btlBulletMove = bulletPrefab.AddComponent<BtlBulletMove>();
+			BtlBulletMove btlBulletMove = bullet.gameObject.AddComponent<BtlBulletMove>();
             if (null == btlBulletMove){
                 Debug.LogErrorFormat("开火失败 BattleBulletMove");
                 return;

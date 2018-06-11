@@ -35,6 +35,8 @@ public class BtlPlaneMove : MonoBehaviour {
             if (!renderer.isVisibleExt(Camera.main)){
                 plane.isVisble = false;
                 Destroy(gameObject);
+				Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList.Remove (plane);
+				Debug.LogFormat ("plane cnt:{0}", Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList.Count);
             }
         }
         BtlMove btlMove = plane.btlMove;
@@ -50,5 +52,18 @@ public class BtlPlaneMove : MonoBehaviour {
     void FixedUpdate(){
         GetComponent<Rigidbody2D>().velocity = this.parent.btlMove.movement;
     }
+	void OnTriggerEnter2D(Collider2D otherCollider){
+		{//敌方子弹造成伤害，并销毁子弹
+			BulletScript bulletScript = otherCollider.gameObject.GetComponent<BulletScript> ();
+			if (null == bulletScript) {
+				return;
+			}
+			if (this.isEnemy == bulletScript.isEnemyShot) {
+				return;
+			}
+			this.Damage (bulletScript.damage);
+			Destroy (bulletScript.gameObject);
+		}
+	}
 }
 #endregion

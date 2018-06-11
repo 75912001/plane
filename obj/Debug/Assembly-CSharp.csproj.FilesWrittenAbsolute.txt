@@ -27,3 +27,4 @@
 /Users/mlc/Desktop/github.com/plane/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/mlc/Desktop/github.com/plane/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/mlc/Desktop/github.com/plane/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/mlc/Desktop/github.com/plane/Temp/bin/Debug/Vuforia.UnityExtensions.dll
