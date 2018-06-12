@@ -23,10 +23,16 @@ class ParseXls:
 		workbook = xlrd.open_workbook(self.xls_full_path_name)
 		worksheet = workbook.sheet_by_index(0)
 		row1 = self.convert_value(worksheet.row_values(0))
+		
 		row2 = self.convert_value(worksheet.row_values(1))
 		row3 = self.convert_value(worksheet.row_values(2))
 		row4 = self.convert_value(worksheet.row_values(3))
 		row5 = self.convert_value(worksheet.row_values(4))
+		print row1
+		print row2
+		print row3
+		print row4
+		print row5
 
 		self.exclude_repeated_case(row5)
 
@@ -67,13 +73,15 @@ class ParseXls:
 					self.name.append(self.beautify_formation(variable))
 					self.desc.append(desc)
 		self.col_size = len(self.type)
+		print self.col_size 
 		self.row_size = worksheet.nrows - 5
 		self.extract_struct_info()
 		
 	
 	def repair_type(self, raw_type):
-		if raw_type.lower() == "uint32"
-			return "uint32"
+		print raw_type
+#		if raw_type.lower() == "uint32"
+#			return "uint32"
 		if raw_type.lower() == "byte":
 			return "uint8_t"
 		elif raw_type.lower() == "int":

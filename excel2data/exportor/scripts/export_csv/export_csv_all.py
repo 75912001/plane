@@ -18,7 +18,7 @@ def init_path():
 
 def refresh_folder(directory):
 	if os.path.exists(directory):
-		shutil.rmtree(directory)
+                shutil.rmtree(directory)
 	os.makedirs(directory)
 
 
@@ -68,6 +68,8 @@ class ConvertExcelToCsv:
 		worksheet = workbook.sheet_by_index(0)
 		row1 = self.convert_value(worksheet.row_values(0), 0)
 		row_n = self.convert_value(worksheet.row_values(ignore_line+1), 0)
+		print worksheet.row_values(0),row1 
+		print worksheet.row_values(ignore_line+1),row_n
 		self.exclude_wrong_case(row_n)
 		
 		staitc_file_name = row1[0]
