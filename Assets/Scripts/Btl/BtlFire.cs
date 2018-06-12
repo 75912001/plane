@@ -32,6 +32,12 @@ public class BtlFire : MonoBehaviour {
             if (!bullet.CanFire()){
                 continue;
             }
+            bool is_user_plane = false;
+            if (plane.isUser()){
+                is_user_plane = true;
+            }
+
+            bullet.camp = plane.camp;
             bullet.fireCoolDown = bullet.fireTime;
 
             GameObject bulletPrefabs = (GameObject)Resources.Load(bullet.bulletName);
@@ -58,10 +64,12 @@ public class BtlFire : MonoBehaviour {
 			btlBulletMove.parent = bullet;
 
             bullet.btlMove.moveTrace = EnumMoveTrace.Line;
-			if(plane.isUser()){
+			if(is_user_plane){
+                bullet.gameObject.layer = (int)EnumLayer.User;
                 bullet.btlMove.speed = new Vector2(0, 10);
                 bullet.btlMove.direction = new Vector2(0, 1);
             } else {
+                bullet.gameObject.layer = (int)EnumLayer.Enemy;
                 bullet.btlMove.speed = new Vector2(0, 2);
                 bullet.btlMove.direction = new Vector2(0, -1);
             }

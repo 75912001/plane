@@ -54,6 +54,7 @@ public class BtlPlaneMove : MonoBehaviour {
     }
 	void OnTriggerEnter2D(Collider2D otherCollider){
 		{//敌方子弹造成伤害，并销毁子弹
+            /*
 			BulletScript bulletScript = otherCollider.gameObject.GetComponent<BulletScript> ();
 			if (null == bulletScript) {
 				return;
@@ -63,6 +64,7 @@ public class BtlPlaneMove : MonoBehaviour {
 			}
 			this.Damage (bulletScript.damage);
 			Destroy (bulletScript.gameObject);
+            */
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class Global {
 #region 阵营
 public enum EnumCamp:uint
 {
-	Green = 1,//绿
+	Blue = 1,//蓝
 	Red = 2//红
 };
 #endregion
@@ -32,5 +32,14 @@ public enum EnumMoveTrace :uint
 {
     //直线
     Line = 1
+};
+#endregion
+
+#region 图层 layer
+public enum EnumLayer:uint
+{
+    //
+    User = 16,//用户
+    Enemy = 14//敌人
 };
 #endregion

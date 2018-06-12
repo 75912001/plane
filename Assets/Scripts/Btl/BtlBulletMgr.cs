@@ -22,6 +22,7 @@ public class BtlBullet{
     public float fireTime;
 	//破坏力
 	public int damage;
+    public EnumCamp camp;
 
     //碰撞对象
     //碰撞后是否消失
@@ -32,6 +33,7 @@ public class BtlBullet{
     public Vector2 firePositionOffset = new Vector2(0, 0);
     public BtlBullet(){
         this.btlMove = new BtlMove();
+        this.camp = EnumCamp.Red;
     }
     //是否可以攻击
     public bool CanFire(){
@@ -47,6 +49,7 @@ public class BtlBullet{
 		this.damage = 0;
         this.firePositionOffset = new Vector2(0, 0);
         this.btlMove.Clear();
+        this.camp = EnumCamp.Red;
 	}
 }
 #endregion
