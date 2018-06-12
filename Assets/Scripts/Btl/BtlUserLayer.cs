@@ -28,17 +28,22 @@ public class BtlUserLayer : MonoBehaviour {
             plane.gameObject = Instantiate(planePrefabs, newPosition, transform.rotation);
             plane.gameObject.transform.SetParent(transform);
             plane.gameObject.layer = (int)EnumLayer.User;
+            
 
             Rigidbody2D rigidbody2D = plane.gameObject.AddComponent<Rigidbody2D>();
             //无引力
             rigidbody2D.gravityScale = 0;
             BoxCollider2D boxCollider2D = plane.gameObject.AddComponent<BoxCollider2D>();
+            boxCollider2D.isTrigger = true;
 
             //移动速度
             plane.btlMove.speed = new Vector2(2, 2);
 
             BtlUserMove btlUserMove = plane.gameObject.AddComponent<BtlUserMove>();
             btlUserMove.parent = plane;
+
+            BtlHit btlHit = plane.gameObject.AddComponent<BtlHit>();
+            btlHit.parent = plane;
 
             BtlUserEnterScene battleUserEnterScene = plane.gameObject.AddComponent<BtlUserEnterScene>();
             battleUserEnterScene.parent = plane;

@@ -20,9 +20,9 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - EnemyBullet
   - User
-  - 
+  - UserBullet
   - 
   - 
   - 

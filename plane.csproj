@@ -253,6 +253,7 @@
     <Compile Include="Assets\Scripts\Btl\BtlEnemyLayer.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlFG.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlFire.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlHit.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlMgr.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlMove.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlPlaneMgr.cs" />

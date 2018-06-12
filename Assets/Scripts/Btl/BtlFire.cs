@@ -65,11 +65,11 @@ public class BtlFire : MonoBehaviour {
 
             bullet.btlMove.moveTrace = EnumMoveTrace.Line;
 			if(is_user_plane){
-                bullet.gameObject.layer = (int)EnumLayer.User;
+                bullet.gameObject.layer = (int)EnumLayer.UserBullet;
                 bullet.btlMove.speed = new Vector2(0, 10);
                 bullet.btlMove.direction = new Vector2(0, 1);
             } else {
-                bullet.gameObject.layer = (int)EnumLayer.Enemy;
+                bullet.gameObject.layer = (int)EnumLayer.EnemyBullet;
                 bullet.btlMove.speed = new Vector2(0, 2);
                 bullet.btlMove.direction = new Vector2(0, -1);
             }

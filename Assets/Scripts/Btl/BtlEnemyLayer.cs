@@ -73,9 +73,14 @@ public class BtlEnemyLayer : MonoBehaviour {
             //无引力
             rigidbody2D.gravityScale = 0;
             BoxCollider2D boxCollider2D = plane.gameObject.AddComponent<BoxCollider2D>();
+            boxCollider2D.isTrigger = true;
 
             BtlPlaneMove btlPlaneMove = plane.gameObject.AddComponent<BtlPlaneMove>();
             btlPlaneMove.parent = plane;
+
+            BtlHit btlHit = plane.gameObject.AddComponent<BtlHit>();
+            btlHit.parent = plane;
+
             //移动速度
             plane.btlMove.speed = new Vector2(1, 1);
             plane.btlMove.direction = new Vector2(0, -1);
