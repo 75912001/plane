@@ -261,6 +261,7 @@
     <Compile Include="Assets\Scripts\Btl\BtlUserEnterScene.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlUserLayer.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlUserMove.cs" />
+    <Compile Include="Assets\Scripts\Config\ConfigCsv.cs" />
     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
     <Compile Include="Assets\Scripts\Cover\Cover.cs" />
     <Compile Include="Assets\Scripts\Cover\CoverForeGround.cs" />

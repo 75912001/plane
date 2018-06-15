@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 #region 战斗中 用户进入场景组件
 public class BtlUserEnterScene : MonoBehaviour {

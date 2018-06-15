@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 #region 战斗中的飞机
@@ -17,10 +16,12 @@ public class BtlPlane{
     public bool isWingman;
     //归属飞机
 	public BtlPlane parentBtlPlane;
+
+    public int hp;
+    public int hpMax;
+
     //todo 僚机AI
-    //todo hp
     //todo 碰撞后给予敌方造成的伤害
-    //todo 是否可碰撞己方飞机
     //入场飞行是否结束
     public bool isEnterSceneEnd;
     //是否可见的.在摄像机可见
@@ -39,6 +40,8 @@ public class BtlPlane{
         this.isEnterSceneEnd = false;
         this.isWingman = false;
         this.isVisble = false;
+        this.hp = 0;
+        this.hpMax = 0;
     }
     //该飞机是否是用户
     public bool isUser()

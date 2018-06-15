@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 #region 战斗 命中 组件
 public class BtlHit : MonoBehaviour {
@@ -17,12 +15,24 @@ public class BtlHit : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        todo
         //敌方子弹造成伤害，并销毁子弹
         BtlBulletMove btlBulletMove = otherCollider.gameObject.GetComponent<BtlBulletMove> ();
         if (null != btlBulletMove) {
-            //btlBulletMove.parent.damage
-            //this.Damage(bulletScript.damage);
+            BtlPlane plane = this.parent;
+            if (!plane.IsInvincible()){
+                if (plane.hp <= btlBulletMove.parent.damage)
+                {
+                    plane.hp = 0;
+
+                    
+                    Destroy(plane.gameObject);
+                }
+                else
+                {
+                    plane.hp -= btlBulletMove.parent.damage;
+                }
+            }
+
             Destroy(btlBulletMove.gameObject);
             return;
         }

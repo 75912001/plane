@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 #region 战斗 用户 层
 public class BtlUserLayer : MonoBehaviour {
@@ -16,6 +14,8 @@ public class BtlUserLayer : MonoBehaviour {
             plane.name = "Prefabs/Plane/p_09d_0";
             plane.camp = EnumCamp.Blue;
             plane.isVisble = true;
+            plane.hpMax = 1000;
+            plane.hp = plane.hpMax;
             GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
             if (null == planePrefabs)
             {

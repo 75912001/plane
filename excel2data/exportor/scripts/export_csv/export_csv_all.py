@@ -18,7 +18,7 @@ def init_path():
 
 def refresh_folder(directory):
 	if os.path.exists(directory):
-                shutil.rmtree(directory)
+		shutil.rmtree(directory)
 	os.makedirs(directory)
 
 
@@ -30,7 +30,6 @@ class ConvertExcelToCsv:
 		ret = []
 		for v in lst:
 			data = v
-		
 			if isinstance(v, int):
 				data = int(v)
 			elif isinstance(v, float):
@@ -46,6 +45,7 @@ class ConvertExcelToCsv:
 			else:
 				if v.strip() == "":
 					if n_th_row != 0:
+						os.system("pause")
 						raise Exception("有空数据:F_ID为:%d"%lst[0])
 					
 			data = str(data)
@@ -57,24 +57,23 @@ class ConvertExcelToCsv:
 		for i in range(len(raw_row)):
 			if raw_row[i] in d:
 				print 'repeated variable: ', raw_row[i]
+				os.system("pause")
 				raise Exception('repeated variable name!')
 			else:
 				d[raw_row[i]] = 0
 		
 	def csv_from_excel(self, excel_file, ignore_line, out_path):
 		src_file = XLS_DIR + excel_file
-		print excel_file
 		workbook = xlrd.open_workbook(src_file)
 		worksheet = workbook.sheet_by_index(0)
 		row1 = self.convert_value(worksheet.row_values(0), 0)
 		row_n = self.convert_value(worksheet.row_values(ignore_line+1), 0)
-		print worksheet.row_values(0),row1 
-		print worksheet.row_values(ignore_line+1),row_n
 		self.exclude_wrong_case(row_n)
 		
 		staitc_file_name = row1[0]
 		if staitc_file_name == '':
-			print excel_file
+			print 'file name is nill!'
+			os.system("pause")
 			raise Exception('file name is nill!')
 		csv_file_name = out_path+''.join([staitc_file_name,'.csv'])
 		your_csv_file = open(csv_file_name, 'wb')
@@ -87,11 +86,15 @@ class ConvertExcelToCsv:
 			if line <= ignore_line:
 				continue
 			ret = self.convert_value(worksheet.row_values(rownum), rownum)
-			if line == 4:
+			if line == ignore_line+1:
 				type_list = ret
-			elif line == 5:
+				print "type_list"
+				print type_list
+			elif line == ignore_line+2:
 				target_variable_name = []
 				variables_name = ret
+				print "variables_name"
+				print variables_name
 				for i, t in enumerate(type_list):
 					if self.is_split_case(t):
 						tmp_list = self.extract_type_name(variables_name[i])

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-#region 全局数据
+﻿#region 全局数据
 public class Global {
 	public BtlMgr btlMgr;
 	private Global(){

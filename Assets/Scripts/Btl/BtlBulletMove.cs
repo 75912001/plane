@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 #region 战斗 子弹 移动 组件
 public class BtlBulletMove : MonoBehaviour {

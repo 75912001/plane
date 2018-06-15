@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BtlEnemyLayer : MonoBehaviour {
@@ -15,7 +14,9 @@ public class BtlEnemyLayer : MonoBehaviour {
                 BtlPlane plane = new BtlPlane
                 {
                     name = "Prefabs/Enemy/a-11_0",
-                    camp = EnumCamp.Red
+                    camp = EnumCamp.Red,
+                    hp = 10,
+                    hpMax = 10
                 };
                 GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
                 if (null == planePrefabs)

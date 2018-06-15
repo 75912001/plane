@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 #region 战斗 飞机移动组件
 public class BtlPlaneMove : MonoBehaviour {
