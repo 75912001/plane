@@ -1,0 +1,21 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<!-- 
+	子弹
+-->
+<root>
+<!-- 
+	id:子弹ID
+	name:名称
+	prefabs:预制件
+	damage:伤害值
+	speedX:速度x
+	speedY:速度y
+	directionOffsetX:方向x,偏向对手的修正
+	directionOffsetY:方向y,偏向对手的修正
+	positionOffsetX:位置偏移量x
+	positionOffsetY:位置偏移量y
+	coolDown:冷却时间
+-->
+	<bullet id="1" name="子弹1" prefabs="p_09d_15" damage="1" speedX="0.1" speedY="0.1" directionOffsetX="0" directionOffsetY="0" positionOffsetX="0" positionOffsetY="0" coolDown="0.1" hit/>
+	<bullet id="2" name="子弹2" prefabs="bullet-01_0" damage="2" speedX="0.2" speedY="0.2" directionOffsetX="0" directionOffsetY="0" positionOffsetX="0" positionOffsetY="0" coolDown="0.2"/>
+</root>

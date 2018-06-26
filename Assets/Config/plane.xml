@@ -1,0 +1,16 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<!-- 
+	飞机
+-->
+<root>
+<!-- 
+	id:飞机ID
+	name:名称
+	prefabs:预制件
+	damage:伤害值,碰撞给对手造成的伤害
+	speedX:速度x
+	speedY:速度y
+-->
+	<plane id="1" name="飞机1" prefabs="p_09d_0" prefabs1="p_09d_1" prefabs2="p_09d_2" prefabs3="p_09d_3" damage="1" speedX="0.1" speedY="0.1"/>
+  <plane id="2" name="飞机2" prefabs="p_09d_0" prefabs1="p_09d_1" prefabs2="p_09d_2" prefabs3="p_09d_3" damage="2" speedX="0.2" speedY="0.2"/>
+</root>
