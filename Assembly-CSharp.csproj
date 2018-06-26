@@ -73,7 +73,7 @@
      <Compile Include="Assets\Scripts\GroundScrolling.cs" />
      <Compile Include="Assets\Scripts\RendererExtensions.cs" />
      <Compile Include="Assets\Scripts\UIEventListener.cs" />
-     <Compile Include="Assets\Scripts\Xml\XmlBattleLevel.cs" />
+     <Compile Include="Assets\Scripts\Xml\XmlGameLevel.cs" />
  <Reference Include="Vuforia.UnityExtensions">
  <HintPath>D:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
  </Reference>

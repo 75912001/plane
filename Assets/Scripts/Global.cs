@@ -1,8 +1,12 @@
 ﻿#region 全局数据
 public class Global {
 	public BtlMgr btlMgr;
+    public XmlGameLevelMgr xmlGameLevelMgr;
 	private Global(){
 		this.btlMgr = new BtlMgr ();
+        this.xmlGameLevelMgr = new XmlGameLevelMgr();
+
+        this.xmlGameLevelMgr.LoadXml();
 	}
 	//private static readonly Global instance = new Global();
 	private static Global instance = new Global();
