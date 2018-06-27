@@ -264,6 +264,7 @@
     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
     <Compile Include="Assets\Scripts\Cover\Cover.cs" />
     <Compile Include="Assets\Scripts\Cover\CoverForeGround.cs" />
+    <Compile Include="Assets\Scripts\FrameAnimation.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\GroundScrolling.cs" />
     <Compile Include="Assets\Scripts\RendererExtensions.cs" />

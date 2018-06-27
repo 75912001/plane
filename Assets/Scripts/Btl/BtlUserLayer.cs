@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 
 #region 战斗 用户 层
 public class BtlUserLayer : MonoBehaviour {
@@ -52,6 +53,25 @@ public class BtlUserLayer : MonoBehaviour {
             plane.btlBulletMgr.Add("Prefabs/Bullet/p_09d_15");
             BtlFire btlFire = plane.gameObject.AddComponent<BtlFire>();
             btlFire.parent = plane;
+            #endregion
+        }
+        {
+            #region 加载飞机的闪电特效
+
+            BtlPlane userPlane = Global.Instance.btlMgr.GetUserPlane();
+
+            FrameAnimation frameAnimation = userPlane.gameObject.AddComponent<FrameAnimation>();
+            frameAnimation.speed = 1.0f;
+            {
+                GameObject prefabs = (GameObject)Resources.Load("Prefabs/Anim/p_09d_36");
+                if (null == prefabs)
+                {
+                    Debug.LogErrorFormat("Prefabs/Anim/p_09d_36未找到");
+                }
+                GameObject gameObject = Instantiate(prefabs, userPlane.gameObject.transform.position, userPlane.gameObject.transform.rotation);
+                gameObject.transform.SetParent(userPlane.gameObject.transform);
+                gameObject.layer = (int)EnumLayer.User;
+            }
             #endregion
         }
     }
