@@ -13,15 +13,15 @@ public class BtlEnemyLayer : MonoBehaviour {
             {
                 BtlPlane plane = new BtlPlane
                 {
-                    name = "Prefabs/Enemy/a-11_0",
                     camp = EnumCamp.Red,
                     hp = 10,
                     hpMax = 10
                 };
-                GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
+                plane.xmlPlane = Global.Instance.xmlPlaneMgr.Find(2);
+                GameObject planePrefabs = (GameObject)Resources.Load(plane.xmlPlane.prefabs);
                 if (null == planePrefabs)
                 {
-                    Debug.LogErrorFormat("BtlFG未找到{0}", plane.name);
+                    Debug.LogErrorFormat("BtlFG未找到{0}", plane.xmlPlane.prefabs);
                 }
                 Vector3 newPosition = transform.position;
                 newPosition.x = i;
@@ -83,7 +83,7 @@ public class BtlEnemyLayer : MonoBehaviour {
             btlHit.parent = plane;
 
             //移动速度
-            plane.btlMove.speed = new Vector2(1, 1);
+            plane.btlMove.speed = new Vector2(plane.xmlPlane.speedX, plane.xmlPlane.speedY);
             plane.btlMove.direction = new Vector2(0, -1);
             plane.btlMove.moveTrace = EnumMoveTrace.Line;
 

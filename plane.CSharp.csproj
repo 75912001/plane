@@ -264,12 +264,12 @@
     <Compile Include="Assets\Scripts\Cover\ButtonBattleEvent.cs" />
     <Compile Include="Assets\Scripts\Cover\Cover.cs" />
     <Compile Include="Assets\Scripts\Cover\CoverForeGround.cs" />
-    <Compile Include="Assets\Scripts\FrameAnimation.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\GroundScrolling.cs" />
     <Compile Include="Assets\Scripts\RendererExtensions.cs" />
     <Compile Include="Assets\Scripts\UIEventListener.cs" />
     <Compile Include="Assets\Scripts\Xml\XmlGameLevel.cs" />
+    <Compile Include="Assets\Scripts\Xml\XmlPlane.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Config\bullet.xml" />

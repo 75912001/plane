@@ -10,17 +10,19 @@ public class BtlUserLayer : MonoBehaviour {
         BtlPlaneMgr btlPlaneMgr = btlMgr.btlPlaneMgr;
 
         {
+            
             #region 加载用户飞机
             BtlPlane plane = btlPlaneMgr.btlPlaneUser;
-            plane.name = "Prefabs/Plane/p_09d_0";
+            plane.xmlPlane = Global.Instance.xmlPlaneMgr.Find(1);
+
             plane.camp = EnumCamp.Blue;
             plane.isVisble = true;
             plane.hpMax = 1000;
             plane.hp = plane.hpMax;
-            GameObject planePrefabs = (GameObject)Resources.Load(plane.name);
+            GameObject planePrefabs = (GameObject)Resources.Load(plane.xmlPlane.prefabs);
             if (null == planePrefabs)
             {
-                Debug.LogErrorFormat("BtlFG未找到{0}", plane.name);
+                Debug.LogErrorFormat("BtlFG未找到{0}", plane.xmlPlane.prefabs);
             }
             Vector3 newPosition = transform.position;
             newPosition.x = 0;
@@ -38,7 +40,7 @@ public class BtlUserLayer : MonoBehaviour {
             boxCollider2D.isTrigger = true;
 
             //移动速度
-            plane.btlMove.speed = new Vector2(2, 2);
+            plane.btlMove.speed = new Vector2(plane.xmlPlane.speedX, plane.xmlPlane.speedY);
 
             BtlUserMove btlUserMove = plane.gameObject.AddComponent<BtlUserMove>();
             btlUserMove.parent = plane;
@@ -60,8 +62,6 @@ public class BtlUserLayer : MonoBehaviour {
 
             BtlPlane userPlane = Global.Instance.btlMgr.GetUserPlane();
 
-            FrameAnimation frameAnimation = userPlane.gameObject.AddComponent<FrameAnimation>();
-            frameAnimation.speed = 1.0f;
             {
                 GameObject prefabs = (GameObject)Resources.Load("Prefabs/Anim/p_09d_36");
                 if (null == prefabs)

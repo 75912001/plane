@@ -7,8 +7,7 @@ public class BtlPlane{
     public GameObject gameObject;
 	//阵营
 	public EnumCamp camp;
-    //飞机名称
-    public string name;
+    public XmlPlane xmlPlane;
     //子弹管理器
     public BtlBulletMgr btlBulletMgr;
     public BtlMove btlMove;
@@ -34,7 +33,6 @@ public class BtlPlane{
     }
     public void Clear(){
         this.gameObject = null;
-        this.name = "";
         this.btlBulletMgr.Clear();
         this.btlMove.Clear();
         this.isEnterSceneEnd = false;
