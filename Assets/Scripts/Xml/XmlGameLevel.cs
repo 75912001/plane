@@ -9,8 +9,6 @@ public class XmlGameLevelEnemy
     public float enterTime;
     public float enterX;
     public float enterY;
-    public float speedX;
-    public float speedY;
     public float directionX;
     public float directionY;
 }
@@ -72,18 +70,20 @@ public class XmlGameLevelMgr{
                 {
                     XmlGameLevelEnemy enemy = new XmlGameLevelEnemy();
                     enemy.planeId = int.Parse(((XmlElement)node).GetAttribute("planeId"));
-                    //<enemy ="2" ="3.0" enter="-3.0,6.0" speed="1.0,1.0" direction="0.0,-1.0"/>
                     enemy.enterTime = float.Parse(((XmlElement)node).GetAttribute("enterTime"));
                     {
-                        string strEnter = ((XmlElement)node).GetAttribute("enter");
-                        string[] enter = strEnter.Split(',');
-                        enemy.enterX = float.Parse(enter[0]);
-                        enemy.enterY = float.Parse(enter[1]);
+                        string str = ((XmlElement)node).GetAttribute("enter");
+                        string[] data = str.Split(',');
+                        enemy.enterX = float.Parse(data[0]);
+                        enemy.enterY = float.Parse(data[1]);
                     }
 
-                       
-                    string strSpeed = ((XmlElement)node).GetAttribute("speed");
-                    string strDirection = ((XmlElement)node).GetAttribute("direction");
+                    {
+                        string str = ((XmlElement)node).GetAttribute("direction");
+                        string[] data = str.Split(',');
+                        enemy.directionX = float.Parse(data[0]);
+                        enemy.directionY = float.Parse(data[1]);
+                    }
 
                     xmlGameLevel.AddEnemy(enemy);
                 }

@@ -14,7 +14,7 @@ public class ButtonBattleEvent : MonoBehaviour {
             BtlMgr battleMgr = Global.Instance.btlMgr;
             battleMgr.Clear();
 
-            XmlGameLevel xmlGameLevel = Global.Instance.xmlGameLevelMgr.Find(1);
+            XmlGameLevel xmlGameLevel = Global.Instance.xmlGameLevelMgr.Find(Global.Instance.btlMgr.gameLevel);
             #region 加载背景
             foreach (var v in xmlGameLevel.bgPrefabsList)
             {

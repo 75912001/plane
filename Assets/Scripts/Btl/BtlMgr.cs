@@ -7,6 +7,7 @@ public class BtlMgr{
     public BtlPlaneMgr btlPlaneMgr;
     //战斗 背景 管理器
     public BtlBGMgr btlBGMgr;
+    public int gameLevel = 1;
 
 	public BtlMgr(){
         this.btlPlaneMgr = new BtlPlaneMgr();

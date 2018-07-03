@@ -8,6 +8,7 @@ public class BtlPlane{
 	//阵营
 	public EnumCamp camp;
     public XmlPlane xmlPlane;
+    public XmlGameLevelEnemy xmlGameLevelEnemy;
     //子弹管理器
     public BtlBulletMgr btlBulletMgr;
     public BtlMove btlMove;

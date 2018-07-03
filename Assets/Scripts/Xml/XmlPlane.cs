@@ -9,6 +9,7 @@ public class XmlPlane
     public int damage;
     public float speedX;
     public float speedY;
+    public int hp;
 
     public XmlPlane()
     {
@@ -39,9 +40,19 @@ public class XmlPlaneMgr{
             XmlPlane xmlPlane = new XmlPlane();
             xmlPlane.id = int.Parse(((XmlElement)planeNode).GetAttribute("id"));
             xmlPlane.prefabs = ((XmlElement)planeNode).GetAttribute("prefabs");
+            GameObject planePrefabs = (GameObject)Resources.Load(xmlPlane.prefabs);
+            if (null == planePrefabs)
+            {
+                Debug.LogErrorFormat("XmlPlaneMgr未找到{0}", xmlPlane.prefabs);
+            }
             xmlPlane.damage = int.Parse(((XmlElement)planeNode).GetAttribute("damage"));
-            xmlPlane.speedX = float.Parse(((XmlElement)planeNode).GetAttribute("speedX"));
-            xmlPlane.speedY = float.Parse(((XmlElement)planeNode).GetAttribute("speedY"));
+            xmlPlane.hp = int.Parse(((XmlElement)planeNode).GetAttribute("hp"));
+            {
+                string str = ((XmlElement)planeNode).GetAttribute("speed");
+                string[] data = str.Split(',');
+                xmlPlane.speedX = float.Parse(data[0]);
+                xmlPlane.speedY = float.Parse(data[1]);
+            }
 
             this.planeDictionary.Add(xmlPlane.id, xmlPlane);
         }

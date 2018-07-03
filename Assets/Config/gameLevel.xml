@@ -19,12 +19,11 @@
 			planeId:飞机ID
 			enterTime:入场时间
 			enter:入场坐标
-			speed:速度
 			direction:方向
 		-->
-		<enemy planeId="2" enterTime="3.0" enter="-3.0,6.0" speed="1.0,1.0" direction="0.0,-1.0"/>
-		<enemy planeId="2" enterTime="3.0" enter="0.0,6.0" speed="1.0,1.0" direction="0.0,-1.0"/>
-		<enemy planeId="2" enterTime="3.0" enter="3.0,6.0" speed="1.0,1.0" direction="0.0,-1.0"/>
+		<enemy planeId="2" enterTime="3.0" enter="-3.0,6.0" direction="0.0,-1.0"/>
+		<enemy planeId="2" enterTime="4.0" enter="0.0,6.0" direction="0.0,-1.0"/>
+		<enemy planeId="2" enterTime="5.0" enter="3.0,6.0" direction="0.0,-1.0"/>
 	</gameLevel>
 	<gameLevel id="2" name="关卡2">
 		<bg prefabs="Prefabs/BackGround/forest_01"/>

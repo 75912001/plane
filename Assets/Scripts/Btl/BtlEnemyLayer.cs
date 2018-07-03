@@ -3,26 +3,27 @@ using UnityEngine;
 
 public class BtlEnemyLayer : MonoBehaviour {
 
+    public float enemyFlyTime;
 	// Use this for initialization
 	void Start () {
-        BtlMgr btlMgr = Global.Instance.btlMgr;
-        BtlPlaneMgr btlPlaneMgr = btlMgr.btlPlaneMgr;
+        this.enemyFlyTime = 0.0f;
+        //BtlMgr btlMgr = Global.Instance.btlMgr;
+        //BtlPlaneMgr btlPlaneMgr = btlMgr.btlPlaneMgr;
         {
             #region 加载敌人飞机 -> 停机坪
-            for (int i = 0; i < 10; i++)
+            XmlGameLevel xmlGameLevel = Global.Instance.xmlGameLevelMgr.Find(Global.Instance.btlMgr.gameLevel);
+            int i = 0;
+            foreach (var v in xmlGameLevel.enemyList)
             {
-                BtlPlane plane = new BtlPlane
-                {
-                    camp = EnumCamp.Red,
-                    hp = 10,
-                    hpMax = 10
-                };
-                plane.xmlPlane = Global.Instance.xmlPlaneMgr.Find(2);
+                BtlPlane plane = new BtlPlane();
+                plane.xmlGameLevelEnemy = v;
+                plane.xmlPlane = Global.Instance.xmlPlaneMgr.Find(v.planeId);
+                plane.camp = EnumCamp.Red;
+                plane.hp = plane.xmlPlane.hp;
+                plane.hpMax = plane.xmlPlane.hp;
+
                 GameObject planePrefabs = (GameObject)Resources.Load(plane.xmlPlane.prefabs);
-                if (null == planePrefabs)
-                {
-                    Debug.LogErrorFormat("BtlFG未找到{0}", plane.xmlPlane.prefabs);
-                }
+
                 Vector3 newPosition = transform.position;
                 newPosition.x = i;
                 newPosition.y = 2 * Camera.main.orthographicSize;
@@ -33,6 +34,7 @@ public class BtlEnemyLayer : MonoBehaviour {
                 plane.gameObject.layer = (int)EnumLayer.Enemy;
 
                 Global.Instance.btlMgr.btlPlaneMgr.parkingApronBtlPlaneEnemyList.Add(plane);
+                i++;
             }
             #endregion
         }
@@ -52,21 +54,22 @@ public class BtlEnemyLayer : MonoBehaviour {
         }
         #endregion
 
-        Global.Instance.btlMgr.btlPlaneMgr.enemyFlyTime -= Time.deltaTime;
-        if (0 < Global.Instance.btlMgr.btlPlaneMgr.enemyFlyTime)
-        {
-            return;
-        }
-        Global.Instance.btlMgr.btlPlaneMgr.enemyFlyTime = Global.Instance.btlMgr.btlPlaneMgr.enemyFlyCoolDownTime;
+        this.enemyFlyTime += Time.deltaTime;
 
         #region 从停机坪 -> 起飞战斗
         List<BtlPlane> btlPlaneEnemyList = Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList;
         List<BtlPlane> parkingApronBtlPlaneEnemyList = Global.Instance.btlMgr.btlPlaneMgr.parkingApronBtlPlaneEnemyList;
-        if (0 < parkingApronBtlPlaneEnemyList.Count)
+
+        for (int i = parkingApronBtlPlaneEnemyList.Count - 1; i >= 0; i--)
         {
-            BtlPlane plane = parkingApronBtlPlaneEnemyList[0];
+            BtlPlane plane = parkingApronBtlPlaneEnemyList[i];
+            if (this.enemyFlyTime < plane.xmlGameLevelEnemy.enterTime)
+            {
+                continue;
+            }
+
             btlPlaneEnemyList.Add(plane);
-            parkingApronBtlPlaneEnemyList.RemoveAt(0);
+            parkingApronBtlPlaneEnemyList.RemoveAt(i);
 
             plane.isEnterSceneEnd = true;
             #region 添加组件
@@ -84,8 +87,14 @@ public class BtlEnemyLayer : MonoBehaviour {
 
             //移动速度
             plane.btlMove.speed = new Vector2(plane.xmlPlane.speedX, plane.xmlPlane.speedY);
-            plane.btlMove.direction = new Vector2(0, -1);
+            plane.btlMove.direction = new Vector2(plane.xmlGameLevelEnemy.directionX, plane.xmlGameLevelEnemy.directionY);
             plane.btlMove.moveTrace = EnumMoveTrace.Line;
+
+            //入场位置
+            Vector3 newPosition = plane.gameObject.transform.position;
+            newPosition.x = plane.xmlGameLevelEnemy.enterX;
+            newPosition.y = plane.xmlGameLevelEnemy.enterY;
+            plane.gameObject.transform.position = newPosition;
 
             //加载子弹
             plane.btlBulletMgr.Add("Prefabs/Bullet/bullet-01_0");
@@ -93,6 +102,7 @@ public class BtlEnemyLayer : MonoBehaviour {
             btlFire.parent = plane;
             #endregion
         }
+
         #endregion
     }
 }
