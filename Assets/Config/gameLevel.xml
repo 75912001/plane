@@ -20,8 +20,9 @@
 			enterTime:入场时间
 			enter:入场坐标
 			direction:方向
+			
 		-->
-		<enemy planeId="2" enterTime="3.0" enter="-3.0,6.0" direction="0.0,-1.0"/>
+		<enemy planeId="2" enterTime="3.0" enter="-3.0,6.0" direction="0.0,-1.0" />
 		<enemy planeId="2" enterTime="4.0" enter="0.0,6.0" direction="0.0,-1.0"/>
 		<enemy planeId="2" enterTime="5.0" enter="3.0,6.0" direction="0.0,-1.0"/>
 	</gameLevel>

@@ -34,7 +34,7 @@ public class BtlPlaneMove : MonoBehaviour {
                 plane.isVisble = false;
                 Destroy(gameObject);
 				Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList.Remove (plane);
-				Debug.LogFormat ("plane cnt:{0}", Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList.Count);
+				//Debug.LogFormat ("plane cnt:{0}", Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList.Count);
             }
         }
         BtlMove btlMove = plane.btlMove;

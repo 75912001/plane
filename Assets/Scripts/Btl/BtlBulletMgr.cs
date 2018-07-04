@@ -13,12 +13,10 @@ public class BtlBullet{
     public BtlMove btlMove;
     //子弹名称
     public string bulletName;
-    //子弹类型
-    public int bulletId;
+    //子弹
+    public XmlBullet xmlBullet;
     //开火冷却 秒
     public float fireCoolDown;
-    //开火 秒
-    public float fireTime;
 	//破坏力
 	public int damage;
     public EnumCamp camp;
@@ -42,9 +40,7 @@ public class BtlBullet{
 		this.parent = null;
 		this.gameObject = null;
 		this.bulletName = "";
-		this.bulletId = 0;
 		this.fireCoolDown = 0f;
-		this.fireTime = 0f;
 		this.damage = 0;
         this.firePositionOffset = new Vector2(0, 0);
         this.btlMove.Clear();
@@ -61,13 +57,13 @@ public class BtlBulletMgr {
     public BtlBulletMgr(){
         this.btlBulletList = new List<BtlBullet>();
     }
-    public void Add(string bulletName){
+    public void Add(XmlBullet xmlBullet){
         BtlBullet battleBullet = new BtlBullet();
 		battleBullet.parent = this;
-        battleBullet.bulletName = bulletName;
-		battleBullet.bulletId = 1;
-		battleBullet.fireCoolDown = 0.1f;
-		battleBullet.fireTime = 0.2f;
+        battleBullet.bulletName = xmlBullet.prefabs;
+        battleBullet.xmlBullet = xmlBullet;
+
+		battleBullet.fireCoolDown = xmlBullet.coolDown;
         
 		battleBullet.damage = 1;
         battleBullet.firePositionOffset = new Vector2(0,0);

@@ -10,7 +10,8 @@
 	damage:伤害值,碰撞给对手造成的伤害
 	speed:速度
 	hp:健康值
+	bullets:子弹(1,2,3)
 -->
-	<plane id="1" name="飞机1" prefabs="Prefabs/Plane/p_09d_0" damage="1" speed="1.0,1.0" hp="10"/>
-	<plane id="2" name="飞机2" prefabs="Prefabs/Enemy/a-11_0" damage="2" speed="1.0,1.0" hp="10"/>
+	<plane id="1" name="飞机1" prefabs="Prefabs/Plane/p_09d_0" damage="1" speed="1.0,1.0" hp="10000" bullets="1"/>
+	<plane id="2" name="飞机2" prefabs="Prefabs/Enemy/a-11_0" damage="2" speed="0.1,0.1" hp="10000" bullets="2,3,4"/>
 </root>

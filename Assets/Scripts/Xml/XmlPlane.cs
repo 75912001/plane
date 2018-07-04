@@ -10,12 +10,15 @@ public class XmlPlane
     public float speedX;
     public float speedY;
     public int hp;
+    public List<int> bulletList;
 
     public XmlPlane()
     {
+        this.bulletList = new List<int>();
     }
     public void Clear()
     {
+        this.bulletList.Clear();
     }
 }
 
@@ -34,24 +37,32 @@ public class XmlPlaneMgr{
         string xmlPath = Application.dataPath + "/Config/plane.xml";
         xml.Load(xmlPath);
         XmlElement rootElem = xml.DocumentElement;
-        XmlNodeList planeNodes = rootElem.GetElementsByTagName("plane");
-        foreach (XmlNode planeNode in planeNodes)
+        XmlNodeList nodes = rootElem.GetElementsByTagName("plane");
+        foreach (XmlNode node in nodes)
         {
             XmlPlane xmlPlane = new XmlPlane();
-            xmlPlane.id = int.Parse(((XmlElement)planeNode).GetAttribute("id"));
-            xmlPlane.prefabs = ((XmlElement)planeNode).GetAttribute("prefabs");
+            xmlPlane.id = int.Parse(((XmlElement)node).GetAttribute("id"));
+            xmlPlane.prefabs = ((XmlElement)node).GetAttribute("prefabs");
             GameObject planePrefabs = (GameObject)Resources.Load(xmlPlane.prefabs);
             if (null == planePrefabs)
             {
                 Debug.LogErrorFormat("XmlPlaneMgr未找到{0}", xmlPlane.prefabs);
             }
-            xmlPlane.damage = int.Parse(((XmlElement)planeNode).GetAttribute("damage"));
-            xmlPlane.hp = int.Parse(((XmlElement)planeNode).GetAttribute("hp"));
+            xmlPlane.damage = int.Parse(((XmlElement)node).GetAttribute("damage"));
+            xmlPlane.hp = int.Parse(((XmlElement)node).GetAttribute("hp"));
             {
-                string str = ((XmlElement)planeNode).GetAttribute("speed");
+                string str = ((XmlElement)node).GetAttribute("speed");
                 string[] data = str.Split(',');
                 xmlPlane.speedX = float.Parse(data[0]);
                 xmlPlane.speedY = float.Parse(data[1]);
+            }
+            {
+                string str = ((XmlElement)node).GetAttribute("bullets");
+                string[] data = str.Split(',');
+                foreach (var v in data)
+                {
+                    xmlPlane.bulletList.Add(int.Parse(v));
+                }
             }
 
             this.planeDictionary.Add(xmlPlane.id, xmlPlane);

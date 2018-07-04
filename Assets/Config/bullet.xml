@@ -8,14 +8,13 @@
 	name:名称
 	prefabs:预制件
 	damage:伤害值
-	speedX:速度x
-	speedY:速度y
-	directionOffsetX:方向x,偏向对手的修正
-	directionOffsetY:方向y,偏向对手的修正
-	positionOffsetX:位置偏移量x
-	positionOffsetY:位置偏移量y
+	speed:速度
+	directionOffset:方向,偏向对手的修正
+	positionOffset:位置偏移量
 	coolDown:冷却时间
 -->
-	<bullet id="1" name="子弹1" prefabs="p_09d_15" damage="1" speedX="0.1" speedY="0.1" directionOffsetX="0" directionOffsetY="0" positionOffsetX="0" positionOffsetY="0" coolDown="0.1" hit/>
-	<bullet id="2" name="子弹2" prefabs="bullet-01_0" damage="2" speedX="0.2" speedY="0.2" directionOffsetX="0" directionOffsetY="0" positionOffsetX="0" positionOffsetY="0" coolDown="0.2"/>
+	<bullet id="1" name="(直线,Y轴正方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="1" speed="0.0,1.0"  directionOffset="0.0,1.0" positionOffset="0.0,0.0" coolDown="2.0"/>
+	<bullet id="2" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="0.0,0.2" directionOffset="0.0,-1.0" positionOffset="0.0,0.0" coolDown="2.0"/>
+	<bullet id="3" name="(直线,目标方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="2" speed="0.3,0.3" directionOffset="1.0,-1.0" positionOffset="0.0,0.0" coolDown="2.0"/> 
+	<bullet id="4" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="0.0,0.2" directionOffset="0.0,-1.0" positionOffset="0.5,0.0" coolDown="2.0"/>
 </root>

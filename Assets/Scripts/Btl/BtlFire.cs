@@ -34,42 +34,58 @@ public class BtlFire : MonoBehaviour {
             if (plane.isUser()){
                 is_user_plane = true;
             }
-
-            bullet.camp = plane.camp;
-            bullet.fireCoolDown = bullet.fireTime;
-
+            bullet.fireCoolDown = bullet.xmlBullet.coolDown;
+            
             GameObject bulletPrefabs = (GameObject)Resources.Load(bullet.bulletName);
             if (null == bulletPrefabs){
                 Debug.LogErrorFormat("开火失败{0}", bullet.bulletName);
                 return;
             }
 
-			//todo 计算子弹的偏移量，得出发射的初始位置
-			bullet.gameObject = Instantiate(bulletPrefabs, transform.position, transform.rotation);
-			#region 此处设置，飞机销毁，子弹也会随父节点销毁
+            BtlBullet newBullet = new BtlBullet();
+            newBullet.camp = plane.camp;
+
+            Vector3 newBulletPosition = new Vector3();
+            newBulletPosition.x = transform.position.x + bullet.xmlBullet.positionOffsetX;
+            newBulletPosition.y = transform.position.y + bullet.xmlBullet.positionOffsetY;
+            
+			//计算子弹的偏移量，得出发射的初始位置
+            newBullet.gameObject = Instantiate(bulletPrefabs, newBulletPosition, transform.rotation);
+            // newBullet.gameObject.transform.LookAt(plane.gameObject.transform);
+			#region 此处设置,飞机销毁,子弹也会随父节点销毁
 			//bulletPrefab.transform.SetParent(plane.gameObject.transform);
 			#endregion
 
-			Rigidbody2D rigidbody2D = bullet.gameObject.AddComponent<Rigidbody2D>();
+            Rigidbody2D rigidbody2D = newBullet.gameObject.AddComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0;
-			BoxCollider2D boxCollider2D = bullet.gameObject.AddComponent<BoxCollider2D>();
+            BoxCollider2D boxCollider2D = newBullet.gameObject.AddComponent<BoxCollider2D>();
 
-			BtlBulletMove btlBulletMove = bullet.gameObject.AddComponent<BtlBulletMove>();
+            BtlBulletMove btlBulletMove = newBullet.gameObject.AddComponent<BtlBulletMove>();
             if (null == btlBulletMove){
                 Debug.LogErrorFormat("开火失败 BattleBulletMove");
                 return;
             }
-			btlBulletMove.parent = bullet;
+            btlBulletMove.parent = newBullet;
+            newBullet.btlMove.moveTrace = EnumMoveTrace.Line;
+            newBullet.btlMove.speed = new Vector2(bullet.xmlBullet.speedX, bullet.xmlBullet.speedY);
 
-            bullet.btlMove.moveTrace = EnumMoveTrace.Line;
 			if(is_user_plane){
-                bullet.gameObject.layer = (int)EnumLayer.UserBullet;
-                bullet.btlMove.speed = new Vector2(0, 10);
-                bullet.btlMove.direction = new Vector2(1, 1);
+                newBullet.gameObject.layer = (int)EnumLayer.UserBullet;
+                newBullet.btlMove.direction = new Vector2(bullet.xmlBullet.directionOffsetX, bullet.xmlBullet.directionOffsetY);
             } else {
-                bullet.gameObject.layer = (int)EnumLayer.EnemyBullet;
-                bullet.btlMove.speed = new Vector2(0, 2);
-                bullet.btlMove.direction = new Vector2(0, -1);
+                newBullet.gameObject.layer = (int)EnumLayer.EnemyBullet;
+
+                #region 计算出子弹到目标飞机的角度
+                BtlPlane userPlane = Global.Instance.btlMgr.GetUserPlane();
+                float x = (userPlane.gameObject.transform.position.x - newBullet.gameObject.transform.position.x);
+                float y = -(userPlane.gameObject.transform.position.y - newBullet.gameObject.transform.position.y);
+                if (System.Math.Abs(y) < System.Math.Abs(bullet.xmlBullet.directionOffsetY))
+                {
+                    y = bullet.xmlBullet.directionOffsetY;
+                }
+                #endregion
+
+                newBullet.btlMove.direction = new Vector2(x * bullet.xmlBullet.directionOffsetX, y * bullet.xmlBullet.directionOffsetY);
             }
         }
     }

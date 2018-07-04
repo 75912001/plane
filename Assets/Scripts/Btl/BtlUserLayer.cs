@@ -52,9 +52,14 @@ public class BtlUserLayer : MonoBehaviour {
             battleUserEnterScene.parent = plane;
 
             //加载子弹
-            plane.btlBulletMgr.Add("Prefabs/Bullet/p_09d_15");
-            BtlFire btlFire = plane.gameObject.AddComponent<BtlFire>();
-            btlFire.parent = plane;
+            foreach (var v in plane.xmlPlane.bulletList)
+            {
+                XmlBullet xmlBullet = Global.Instance.xmlBulletMgr.Find(v);
+
+                plane.btlBulletMgr.Add(xmlBullet);
+                BtlFire btlFire = plane.gameObject.AddComponent<BtlFire>();
+                btlFire.parent = plane;
+            }
             #endregion
         }
         {

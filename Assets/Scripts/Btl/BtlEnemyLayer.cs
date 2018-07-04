@@ -2,11 +2,10 @@
 using UnityEngine;
 
 public class BtlEnemyLayer : MonoBehaviour {
-
-    public float enemyFlyTime;
+    //敌机层 飞行时间
+    public float enemyLayerFlyTime;
 	// Use this for initialization
 	void Start () {
-        this.enemyFlyTime = 0.0f;
         //BtlMgr btlMgr = Global.Instance.btlMgr;
         //BtlPlaneMgr btlPlaneMgr = btlMgr.btlPlaneMgr;
         {
@@ -39,9 +38,16 @@ public class BtlEnemyLayer : MonoBehaviour {
             #endregion
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
+        //更新飞行中的敌机的飞行时间
+        foreach (var v in Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList)
+        {
+            BtlPlane plane = v;
+            plane.flyTime += Time.deltaTime;
+        }
         this.EnemyFly();
     }
     //敌机入场
@@ -54,7 +60,7 @@ public class BtlEnemyLayer : MonoBehaviour {
         }
         #endregion
 
-        this.enemyFlyTime += Time.deltaTime;
+        this.enemyLayerFlyTime += Time.deltaTime;
 
         #region 从停机坪 -> 起飞战斗
         List<BtlPlane> btlPlaneEnemyList = Global.Instance.btlMgr.btlPlaneMgr.btlPlaneEnemyList;
@@ -63,7 +69,7 @@ public class BtlEnemyLayer : MonoBehaviour {
         for (int i = parkingApronBtlPlaneEnemyList.Count - 1; i >= 0; i--)
         {
             BtlPlane plane = parkingApronBtlPlaneEnemyList[i];
-            if (this.enemyFlyTime < plane.xmlGameLevelEnemy.enterTime)
+            if (this.enemyLayerFlyTime < plane.xmlGameLevelEnemy.enterTime)
             {
                 continue;
             }
@@ -96,10 +102,17 @@ public class BtlEnemyLayer : MonoBehaviour {
             newPosition.y = plane.xmlGameLevelEnemy.enterY;
             plane.gameObject.transform.position = newPosition;
 
+
             //加载子弹
-            plane.btlBulletMgr.Add("Prefabs/Bullet/bullet-01_0");
-            BtlFire btlFire = plane.gameObject.AddComponent<BtlFire>();
-            btlFire.parent = plane;
+            foreach (var v in plane.xmlPlane.bulletList)
+            {
+                XmlBullet xmlBullet = Global.Instance.xmlBulletMgr.Find(v);
+                
+                plane.btlBulletMgr.Add(xmlBullet);
+                BtlFire btlFire = plane.gameObject.AddComponent<BtlFire>();
+                btlFire.parent = plane;
+            }
+            
             #endregion
         }
 

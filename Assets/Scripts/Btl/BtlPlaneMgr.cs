@@ -7,6 +7,7 @@ public class BtlPlane{
     public GameObject gameObject;
 	//阵营
 	public EnumCamp camp;
+    //对应配置表
     public XmlPlane xmlPlane;
     public XmlGameLevelEnemy xmlGameLevelEnemy;
     //子弹管理器
@@ -26,6 +27,8 @@ public class BtlPlane{
     public bool isEnterSceneEnd;
     //是否可见的.在摄像机可见
     public bool isVisble;
+    //飞行时间
+    public float flyTime;
 
     public BtlPlane(){
         this.btlBulletMgr = new BtlBulletMgr();
@@ -41,6 +44,7 @@ public class BtlPlane{
         this.isVisble = false;
         this.hp = 0;
         this.hpMax = 0;
+        this.flyTime = 0;
     }
     //该飞机是否是用户
     public bool isUser()

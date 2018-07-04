@@ -3,13 +3,16 @@ public class Global {
 	public BtlMgr btlMgr;
     public XmlGameLevelMgr xmlGameLevelMgr;
     public XmlPlaneMgr xmlPlaneMgr;
+    public XmlBulletMgr xmlBulletMgr;
 	private Global(){
 		this.btlMgr = new BtlMgr ();
         this.xmlGameLevelMgr = new XmlGameLevelMgr();
         this.xmlPlaneMgr = new XmlPlaneMgr();
+        this.xmlBulletMgr = new XmlBulletMgr();
 
         this.xmlGameLevelMgr.LoadXml();
         this.xmlPlaneMgr.LoadXml();
+        this.xmlBulletMgr.LoadXml();
 	}
 	//private static readonly Global instance = new Global();
 	private static Global instance = new Global();

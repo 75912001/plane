@@ -268,6 +268,7 @@
     <Compile Include="Assets\Scripts\GroundScrolling.cs" />
     <Compile Include="Assets\Scripts\RendererExtensions.cs" />
     <Compile Include="Assets\Scripts\UIEventListener.cs" />
+    <Compile Include="Assets\Scripts\Xml\XmlBullet.cs" />
     <Compile Include="Assets\Scripts\Xml\XmlGameLevel.cs" />
     <Compile Include="Assets\Scripts\Xml\XmlPlane.cs" />
   </ItemGroup>
