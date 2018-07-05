@@ -8,7 +8,7 @@ public class BtlBulletMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //n秒后自动销毁
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 20);
     }
 	
 	// Update is called once per frame
@@ -16,7 +16,12 @@ public class BtlBulletMove : MonoBehaviour {
         BtlMove btlMove = this.parent.btlMove;
 		switch (btlMove.moveTrace) {
 		case EnumMoveTrace.Line://直线
-            btlMove.movement = new Vector2 (btlMove.speed.x * btlMove.direction.x, btlMove.speed.y * btlMove.direction.y);
+            float xAbs = System.Math.Abs(btlMove.direction.x);
+            float yAbs = System.Math.Abs(btlMove.direction.y);
+            float sumAbs = xAbs + yAbs;
+            sumAbs = (0 == sumAbs ? 1 : sumAbs);
+            btlMove.movement.x = btlMove.speed.x * (btlMove.direction.x < 0 ? -1 : 1) * xAbs/sumAbs;
+            btlMove.movement.y = btlMove.speed.y * (btlMove.direction.y < 0 ? -1 : 1) * yAbs/sumAbs;
 			break;
 		default:
 			Debug.LogErrorFormat ("子弹 移动类型{0}", btlMove.moveTrace);

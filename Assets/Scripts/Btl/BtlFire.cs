@@ -45,22 +45,20 @@ public class BtlFire : MonoBehaviour {
             BtlBullet newBullet = new BtlBullet();
             newBullet.camp = plane.camp;
 
+            #region 计算子弹的偏移量，得出发射的初始位置
             Vector3 newBulletPosition = new Vector3();
             newBulletPosition.x = transform.position.x + bullet.xmlBullet.positionOffsetX;
             newBulletPosition.y = transform.position.y + bullet.xmlBullet.positionOffsetY;
+            #endregion
 
-            #region 计算出子弹到目标飞机的角度
+            #region 计算出子弹到目标飞机的距离
             BtlPlane userPlane = Global.Instance.btlMgr.GetUserPlane();
-            float x = (userPlane.gameObject.transform.position.x - newBulletPosition.x);
-            float y = -(userPlane.gameObject.transform.position.y - newBulletPosition.y);
-            if (System.Math.Abs(y) < System.Math.Abs(bullet.xmlBullet.directionOffsetY))
-            {
-                y = bullet.xmlBullet.directionOffsetY;
-            }
+            float x = newBulletPosition.x - userPlane.gameObject.transform.position.x;
+            float y = newBulletPosition.y - userPlane.gameObject.transform.position.y;
             #endregion
 
             #region 旋转子弹
-            float angleOfLine = (float)(System.Math.Atan2((x), (y)) * 180 / System.Math.PI);
+            float angleOfLine = (float)(System.Math.Atan2((-x), (y)) * 180 / System.Math.PI);
             if (!is_user_plane)
             {
                 angleOfLine -= 180.0f;
@@ -70,9 +68,7 @@ public class BtlFire : MonoBehaviour {
             quaternion = Quaternion.Euler(rotation);
             #endregion
 
-			//计算子弹的偏移量，得出发射的初始位置
             newBullet.gameObject = Instantiate(bulletPrefabs, newBulletPosition, quaternion);
-            // newBullet.gameObject.transform.LookAt(plane.gameObject.transform);
 			#region 此处设置,飞机销毁,子弹也会随父节点销毁
 			//bulletPrefab.transform.SetParent(plane.gameObject.transform);
 			#endregion
@@ -88,14 +84,17 @@ public class BtlFire : MonoBehaviour {
             }
             btlBulletMove.parent = newBullet;
             newBullet.btlMove.moveTrace = EnumMoveTrace.Line;
-            newBullet.btlMove.speed = new Vector2(bullet.xmlBullet.speedX, bullet.xmlBullet.speedY);
+            newBullet.btlMove.speed.x = bullet.xmlBullet.speed;
+            newBullet.btlMove.speed.y = bullet.xmlBullet.speed;
 
 			if(is_user_plane){
                 newBullet.gameObject.layer = (int)EnumLayer.UserBullet;
-                newBullet.btlMove.direction = new Vector2(bullet.xmlBullet.directionOffsetX, bullet.xmlBullet.directionOffsetY);
+                newBullet.btlMove.direction.x = bullet.xmlBullet.directionOffsetX;
+                newBullet.btlMove.direction.y = bullet.xmlBullet.directionOffsetY;
             } else {
                 newBullet.gameObject.layer = (int)EnumLayer.EnemyBullet;
-                newBullet.btlMove.direction = new Vector2(x * bullet.xmlBullet.directionOffsetX, y * bullet.xmlBullet.directionOffsetY);
+                newBullet.btlMove.direction.x = -x * bullet.xmlBullet.directionOffsetX;
+                newBullet.btlMove.direction.y = y * bullet.xmlBullet.directionOffsetY;
             }
         }
     }

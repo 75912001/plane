@@ -10,10 +10,8 @@ public class XmlBullet
     public string prefabs;
     //子弹伤害
     public int damage;
-    //子弹速度X
-    public float speedX;
-    //子弹速度Y
-    public float speedY;
+    //子弹速度
+    public float speed;
     //方向(偏正对手的修正)
     public float directionOffsetX;
     public float directionOffsetY;
@@ -59,12 +57,7 @@ public class XmlBulletMgr{
                 Debug.LogErrorFormat("XmlBulletMgr未找到{0}", xmlBullet.prefabs);
             }
             xmlBullet.damage = int.Parse(((XmlElement)node).GetAttribute("damage"));
-            {
-                string str = ((XmlElement)node).GetAttribute("speed");
-                string[] data = str.Split(',');
-                xmlBullet.speedX = float.Parse(data[0]);
-                xmlBullet.speedY = float.Parse(data[1]);
-            }
+            xmlBullet.speed = float.Parse(((XmlElement)node).GetAttribute("speed"));
             {
                 string str = ((XmlElement)node).GetAttribute("directionOffset");
                 string[] data = str.Split(',');

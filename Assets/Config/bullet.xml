@@ -13,8 +13,8 @@
 	positionOffset:位置偏移量
 	coolDown:冷却时间
 -->
-	<bullet id="1" name="(直线,Y轴正方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="1" speed="0.0,1.0"  directionOffset="0.0,1.0" positionOffset="0.0,0.0" coolDown="2.0"/>
-	<bullet id="2" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="0.0,1.0" directionOffset="0.0,-1.0" positionOffset="0.0,0.0" coolDown="2.0"/>
-	<bullet id="3" name="(直线,目标方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="2" speed="1.0,1.0" directionOffset="1.0,-1.0" positionOffset="0.0,0.0" coolDown="2.0"/> 
-	<bullet id="4" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="0.0,1.0" directionOffset="0.0,-1.0" positionOffset="0.5,0.0" coolDown="2.0"/>
+	<bullet id="1" name="(直线,Y轴正方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="1" speed="1.0"  directionOffset="0.0,1.0" positionOffset="0.0,0.0" coolDown="2.0"/>
+	<bullet id="2" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="1.0" directionOffset="0.0,-1.0" positionOffset="-0.3,0.0" coolDown="10.0"/>
+	<bullet id="3" name="(直线,目标方向)" prefabs="Prefabs/Bullet/p_09d_15" damage="2" speed="1.0" directionOffset="1.0,-1.0" positionOffset="0.0,0.0" coolDown="15.0"/> 
+	<bullet id="4" name="(直线,Y轴负方向)" prefabs="Prefabs/Bullet/bullet-01_0" damage="2" speed="1.0" directionOffset="0.0,-1.0" positionOffset="0.3,0.0" coolDown="10.0"/>
 </root>
