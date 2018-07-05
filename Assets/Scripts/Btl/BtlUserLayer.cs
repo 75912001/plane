@@ -64,7 +64,6 @@ public class BtlUserLayer : MonoBehaviour {
         }
         {
             #region 加载飞机的闪电特效
-
             BtlPlane userPlane = Global.Instance.btlMgr.GetUserPlane();
 
             {

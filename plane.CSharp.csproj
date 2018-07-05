@@ -249,6 +249,7 @@
     <Compile Include="Assets\Scripts\Btl\BtlBGMgr.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlBulletMgr.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlBulletMove.cs" />
+    <Compile Include="Assets\Scripts\Btl\BtlDropItem.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlEnemyLayer.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlFG.cs" />
     <Compile Include="Assets\Scripts\Btl\BtlFire.cs" />
@@ -276,6 +277,7 @@
     <None Include="Assets\Config\bullet.xml" />
     <None Include="Assets\Config\doc.txt" />
     <None Include="Assets\Config\gameLevel.xml" />
+    <None Include="Assets\Config\item.xml" />
     <None Include="Assets\Config\plane.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2012\UnityVS.CSharp.targets" />

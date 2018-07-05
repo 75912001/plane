@@ -2,6 +2,13 @@
 using System.Xml;
 using System.Collections.Generic;
 
+
+public class Item
+{
+    public int id;
+    public int cnt;
+}
+
 public class XmlPlane
 {
     public int id;
@@ -11,14 +18,17 @@ public class XmlPlane
     public float speedY;
     public int hp;
     public List<int> bulletList;
+    public List<Item> dropItemList;
 
     public XmlPlane()
     {
         this.bulletList = new List<int>();
+        this.dropItemList = new List<Item>();
     }
     public void Clear()
     {
         this.bulletList.Clear();
+        this.dropItemList.Clear();
     }
 }
 
@@ -64,6 +74,23 @@ public class XmlPlaneMgr{
                     xmlPlane.bulletList.Add(int.Parse(v));
                 }
             }
+            #region 掉落物品
+            {
+                string str = ((XmlElement)node).GetAttribute("dropItems");
+                if (0 != str.Length)
+                {
+                    string[] strItems = str.Split(';');
+                    foreach (var vItems in strItems)
+                    {
+                        string[] strItem = vItems.Split(',');
+                        Item item = new Item();
+                        item.id = int.Parse(strItem[0]);
+                        item.cnt = int.Parse(strItem[1]);
+                        xmlPlane.dropItemList.Add(item);
+                    }
+                }
+            }
+            #endregion
 
             this.planeDictionary.Add(xmlPlane.id, xmlPlane);
         }

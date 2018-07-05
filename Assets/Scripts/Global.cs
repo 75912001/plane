@@ -44,9 +44,11 @@ public enum EnumMoveTrace :uint
 #region 图层 layer
 public enum EnumLayer:uint
 {
+    DropItem = 13,//掉落物品
     Enemy = 14,//敌人
     EnemyBullet = 15,//敌人子弹
     User = 16,//用户
     UserBullet = 17//用户子弹
+    
 };
 #endregion

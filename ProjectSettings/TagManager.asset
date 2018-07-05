@@ -18,7 +18,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - DropItem
   - Enemy
   - EnemyBullet
   - User

@@ -20,16 +20,29 @@ public class BtlHit : MonoBehaviour {
         if (null != btlBulletMove) {
             BtlPlane plane = this.parent;
             if (!plane.IsInvincible()){
-                if (plane.hp <= btlBulletMove.parent.damage)
+
+                if (plane.hp <= btlBulletMove.parent.xmlBullet.damage)
                 {
                     plane.hp = 0;
 
-                    
+                    #region 掉落物品
+                    {
+                        GameObject prefabs = (GameObject)Resources.Load("Prefabs/Anim/crystal-big_1");
+                        if (null == prefabs)
+                        {
+                            Debug.LogErrorFormat("Prefabs/Anim/crystal-big_1未找到");
+                        }
+                        GameObject gameObject = Instantiate(prefabs, plane.gameObject.transform.position, plane.gameObject.transform.rotation);
+                        //gameObject.transform.SetParent(userPlane.gameObject.transform);
+                        gameObject.layer = (int)EnumLayer.DropItem;
+                    }
+                    #endregion
+
                     Destroy(plane.gameObject);
                 }
                 else
                 {
-                    plane.hp -= btlBulletMove.parent.damage;
+                    plane.hp -= btlBulletMove.parent.xmlBullet.damage;
                 }
             }
 

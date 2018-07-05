@@ -17,8 +17,7 @@ public class BtlBullet{
     public XmlBullet xmlBullet;
     //开火冷却 秒
     public float fireCoolDown;
-	//破坏力
-	public int damage;
+
     public EnumCamp camp;
 
     //碰撞对象
@@ -26,8 +25,6 @@ public class BtlBullet{
     //二次爆炸后 触发新的子弹管理器
     //子弹归属者消失后,子弹是否消失
     //是否暂停
-    //子弹发射位置(相对发射器的偏移量)
-    public Vector2 firePositionOffset = new Vector2(0, 0);
     public BtlBullet(){
         this.btlMove = new BtlMove();
         this.camp = EnumCamp.Red;
@@ -41,8 +38,6 @@ public class BtlBullet{
 		this.gameObject = null;
 		this.bulletName = "";
 		this.fireCoolDown = 0f;
-		this.damage = 0;
-        this.firePositionOffset = new Vector2(0, 0);
         this.btlMove.Clear();
         this.camp = EnumCamp.Red;
 	}
@@ -62,12 +57,7 @@ public class BtlBulletMgr {
 		battleBullet.parent = this;
         battleBullet.bulletName = xmlBullet.prefabs;
         battleBullet.xmlBullet = xmlBullet;
-
 		battleBullet.fireCoolDown = xmlBullet.coolDown;
-        
-		battleBullet.damage = 1;
-        battleBullet.firePositionOffset = new Vector2(0,0);
-
         this.btlBulletList.Add(battleBullet);
     }
 	public void Clear(){

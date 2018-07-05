@@ -1,0 +1,14 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<!-- 
+	道具
+-->
+<root>
+<!-- 
+	id:ID
+	name:名称
+	prefabs:预制件
+	btlDropItemPrefabs:战斗掉落预制件
+-->
+	<item id="10001" name="道具1" btlDropItemPrefabs="Prefabs/Anim/crystal-big_1"/>
+	<item id="10002" name="道具2" btlDropItemPrefabs="Prefabs/Anim/crystal-mid_0"/>
+</root>

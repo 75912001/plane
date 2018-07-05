@@ -44,6 +44,7 @@ public class BtlFire : MonoBehaviour {
 
             BtlBullet newBullet = new BtlBullet();
             newBullet.camp = plane.camp;
+            newBullet.xmlBullet = bullet.xmlBullet;
 
             #region 计算子弹的偏移量，得出发射的初始位置
             Vector3 newBulletPosition = new Vector3();
