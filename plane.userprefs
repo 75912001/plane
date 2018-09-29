@@ -1,19 +1,11 @@
-﻿<Properties StartupItem="plane.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Config\ConfigCsv.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Btl/BtlHit.cs">
     <Files>
-      <File FileName="Assets\Scripts\Btl\BtlPlaneMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlFG.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UIEventListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlFire.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlBulletMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlBulletMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Global.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlUserMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Btl\BtlPlaneMove.cs" Line="55" Column="3" NotebookId="1" />
-      <File FileName="Assets\Scripts\Config\ConfigCsv.cs" Line="5" Column="14" NotebookId="1" />
+      <File FileName="Assets/Scripts/Btl/BtlHit.cs" Line="33" Column="1" />
+      <File FileName="Assets/Scripts/Btl/BtlFire.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Btl/BtlBulletMove.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Btl/BtlDropItem.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
